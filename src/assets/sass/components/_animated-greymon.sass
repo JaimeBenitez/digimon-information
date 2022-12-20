@@ -1,0 +1,48 @@
+//Este archivo contiene todo lo necesario para la animación de la pantalla de error
+$imageWidth: 1690  // Ancho de todo el spritesheet
+$imageHeight: 360 // Tamaño de todo el spritesheet
+$steps-x: 4       // Cuantas imagenes tiene el spritesheet horizontalmente
+$steps-y: 1       // Cuantas imagenes tiene el spritesheet verticalmente
+$duration: 0.8    // Duracion de la animacion
+$image: '../../img/metal-greymon.png' // Sprite
+
+
+//Calculos que permiten que el sprite no se deforme al moverse, asi como especificar cuando pasar al siguiente frame
+$height: calc($imageHeight / $steps-y) + px
+$width: calc($imageWidth / $steps-x) + px
+$next-step: $duration * $steps-y + s
+
+//Keyframes que dotan de movimiento al sprite
+@keyframes run-x 
+    from 
+        background-position-x: 0
+    
+    to 
+        background-position-x: -$imageWidth + px
+    
+
+
+@keyframes run-y 
+    from 
+        background-position-y: 0
+    
+    to 
+        background-position-y: -$imageHeight + px
+
+//Damos el estilo principal, especificando diversos aspectos de la animacion y el posicionamiento del sprite
+#sprite 
+    height: $height
+    width: $width
+    background-image: url($image)
+    background-position: 0 0
+    align-self: center
+    margin-right: 20px
+  
+    animation-name: run-x, run-y
+    animation-duration: $duration + s, $next-step
+    animation-iteration-count: infinite
+    animation-timing-function: steps($steps-x), steps($steps-y)
+
+
+
+    

@@ -1,0 +1,55 @@
+//Establecemos el espacio entre el formulario y los titulos con margin-top
+#principal__form
+  margin-top: 67px
+
+//Estilo de las cajas de input, esto también incluye el select
+.principal__input
+  border-radius: 30px 0px 0px 30px
+  height: 40px
+  width: 50%  
+  background-color: var(--search-color)
+  font-family: $font-text
+  font-size: $size-text
+
+//Le damos estilo y espaciado a nuestro placeholder
+#principal__name
+  text-indent: 15px
+  color: var(--text-color)
+
+//Estilo del boton del primer submit
+#principal__name--submit
+  background-color: var(--secondary-color)
+  border-radius: 0px 30px 30px 0px
+  height: 40px
+  width: 50px  
+  cursor: pointer
+
+//Estilo del segundo input, esto nos permite que esté debajo y algo separado del primero
+#principal__level 
+  display: block
+  margin-top: 10px
+  padding-left: 10px
+
+//Estilo del boton del 2º submit, hay que colocarle el margen para que se alinee con la caja del select
+#principal__level--submit
+  background-color: var(--secondary-color)
+  border-radius: 0px 30px 30px 0px
+  height: 40px
+  width: 50px
+  margin-top:10px
+  cursor: pointer
+
+//Estas agrupaciónes nos permiten centrar los inputs con sus botones y quitar bordes no deseados
+fieldset
+  display: flex
+  align-items: center
+  justify-content: center
+  border: 0px
+
+//Como en _reset hemos reseteado los bordes, por alguna razon por defecto nos coloca el color principal,
+//de esta manera lo quitamos
+span 
+  background-color: transparent
+  
+option
+  background-color: transparent

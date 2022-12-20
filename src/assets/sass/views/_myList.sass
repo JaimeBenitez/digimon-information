@@ -1,0 +1,198 @@
+//Estilo para la pantalla de lista guardada por el usuario
+#myList__body
+  background-color: var(--primary-color)
+  overflow: hidden 
+  @media only screen and (max-width: 800px)      
+    position: relative
+
+#myList__header
+  display: flex 
+  position: relative
+  align-items: center
+  justify-content: center
+  flex-direction: row
+
+#myList__main
+  display: flex   
+  align-items: center
+  justify-content: center
+  flex-direction: column 
+  position: initial
+  
+#myList__logo  
+  width: 200px 
+  height: 100px
+
+#myList
+  width: 100%  
+  text-align: center
+  display: flex
+  flex-direction: row
+  justify-content: space-between  
+
+#myList__form  
+  padding-left: 100px
+  margin-top: 10px
+  @media only screen and (max-width: 800px)  
+    width: 100%
+    padding-left: 0px
+
+.myList__byLevel
+  display: none
+  
+.myList__byType
+  display: none
+
+.show
+  display: block
+
+.myList__radio
+  margin-left: 20px
+
+.myList__label, .myList__subtitles  
+  color: var(--secondary-color)
+  text-shadow: 1px 1px black  
+  font-family: $font-title
+  font-size: $size-subtitle 
+  margin-top: 40px
+  margin-left: 5px
+
+.myList__subtitles 
+  display: block
+  margin-top: 20px
+
+.myList__digimon
+  height: auto
+
+.myList__digimon > li 
+  display: block
+  color: var(--secondary-color)
+  text-shadow: 1px 1px black  
+  font-family: $font-text
+  font-size: $size-text 
+  margin-top: 10px
+  cursor: pointer
+
+.myList__img__container
+  width: 48%
+  height: 450px      
+  padding-top: 50px
+  padding-right: 100px
+  @media only screen and (max-width: 800px)  
+    display: none
+
+.myList__img
+  width: 100%
+  height: 100% 
+  object-fit: cover  
+//Aqui hemos usado una posicion absoluta para posicionar el contenedor que aparece por encima de la imagen anterior. Esta posicion
+//es modificada en la media query
+.myList__output
+  background-color: var(--secondary-color)  
+  width: 48%
+  height: 460px 
+  flex-wrap: wrap 
+  position: absolute
+  top: 149
+  right: 100
+  display: none
+  @media only screen and (max-width: 800px)
+    top: 50
+
+
+.myList__output--section
+  display: flex
+  flex-flow: column wrap
+  justify-content: center
+  align-items: center
+  width: 50%
+  @media only screen and (max-width: 800px)  
+    height: 40%
+
+.output__show
+  display: flex
+  //En el caso del modo móvil, necesitamos que el contenedor ocupe toda la pantalla
+  @media only screen and (max-width: 800px)    
+    width: 100vw
+    height: 100vh
+    z-index: 1
+    top: 0
+    right: 0
+    align-items: center
+
+.myList__output--img
+  height: 300px  
+  width: 300px  
+  display: inline
+
+//Especificamos esta imagen ya que debido a las medidas originales de la imagen necesita una media query diferente
+.tyrannomon__img
+  height: 300px  
+  width: 300px  
+  display: inline
+  @media only screen and (max-width: 1300px) 
+    height: 200px
+    width: 200px
+
+.img__hide
+  display: none
+
+.myList__output--title
+  color: var(--text-color)
+  text-shadow: 1px 1px black
+  font-family: $font-title
+  font-size: $size-subtitle
+  text-align: center
+  width: 100%
+
+.myList__output--subtitle
+  display: block
+  color: var(--text-color) 
+  text-shadow: 1px 1px black 
+  font-family: $font-title
+  font-size: $size-text
+  text-align: center
+  margin-bottom: 10px 
+
+.myList__output--text
+  display: block
+  color: var(--text-color)  
+  font-family: $font-title
+  font-size: $size-text
+  text-align: center
+  margin-bottom: 40px
+  
+.digimon__back
+  background-color: transparent
+  display: none
+  float: right
+  @media only screen and (max-width: 800px) 
+    display: inline   
+
+.digimon__arrow
+  height: 40px  
+  width: 40px 
+  cursor: pointer
+  position: absolute
+  right: 5
+  bottom: 5
+  @media only screen and (max-width: 800px)  
+    display: inline
+
+.myList__nav
+  display: flex
+  position: fixed
+  justify-content: space-between
+  width: 100%  
+  bottom: 10px
+
+#myList__toList
+  margin-left: 10px
+  width: 150px  
+
+#myList__back    
+  width: 30px
+  padding-right: 20px
+  align-self:  flex-end
+
+

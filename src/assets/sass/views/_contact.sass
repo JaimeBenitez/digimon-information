@@ -1,0 +1,91 @@
+//Estilo para la pagina de contacto
+#contact
+    width: 50%
+    padding: 20px
+    @media only screen and (max-width: 800px)    
+        width: 100%
+
+
+#contact__fieldset
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    
+.contact__subtitle
+    color: var(--secondary-color)
+    text-shadow: 1px 1px black
+    font-family: $font-title
+    font-size: $size-subtitle
+    text-align: center
+
+#contact__collaborators
+    margin-top: 40px
+    width: 60%    
+
+#contact__faq
+    margin-top: 40px
+    width: 60%
+
+#contact__suggestions
+    margin-top: 40px
+    width: 60%
+
+#contact__img
+    margin-top: 40px
+    max-height: 310px
+    max-width: 310px    
+
+#contact__back    
+    padding-right: 20px
+    align-self:  flex-end
+    padding-top: 20px
+
+//Este contenedor se mantiene oculto hasta que es llamado al hacer click en el boton "Collaborators"
+.collaborators    
+    position: absolute
+    right: -100vw
+    background-color: var(--primary-color)
+    z-index: 1   
+    width: 50vw
+    height: 100vh     
+    object-fit: cover
+    object-position: center top
+    transition: all 2s ease
+    
+//Clase que permite mostrar el contenedor "Collaborators"
+.show         
+    right: 50vw
+    transition: all 2s ease
+    @media only screen and (max-width: 800px)        
+        right: 0vw
+        width: 100vw
+        height: 100vh    
+
+.collaborators__title
+    color: var(--secondary-color)
+    text-shadow: 1px 1px black
+    font-family: $font-title
+    font-size: $size-title
+    text-align: center
+    margin-top: 50px
+    @media only screen and (max-width: 800px)    
+        font-size: 55px
+
+.collaborators__subtitle
+    color: var(--secondary-color)
+    text-shadow: 1px 1px black
+    font-family: $font-title
+    font-size: $size-text
+    text-align: center
+    margin: 10px
+
+#collaborators__back
+    display: none    
+    background-color: transparent
+    padding-top: 60px
+    padding-right: 20px
+    float: right
+    cursor: pointer
+    @media only screen and (max-width: 800px)   
+        display: block

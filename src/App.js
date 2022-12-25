@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, NavLink} from "react-rout
 import React from 'react';
 import './assets/sass/App.sass';
 import Index from "./components/index";
+import Register from "./components/register";
 
 
 
@@ -11,7 +12,8 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element= {<Index />} />          
+        <Route exact path="/" element= {<Index />} />  
+        <Route exact path="/register.html" element= {<Register />} />
       </Routes>
     </Router>
   );

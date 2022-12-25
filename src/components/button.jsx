@@ -5,4 +5,4 @@ function Button ( props ){
     <a href={`${props.direction}.html`} className="buttons">{`${props.children}`}</a>
     )
 }
-export default Button
+export default Button;

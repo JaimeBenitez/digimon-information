@@ -5,11 +5,10 @@ import SearchBars from "./search-bars";
 import Button from "./button";
 
 
-function Index(){
-    //Variable necesaria para que coja el claro oscuro, se repetirá en todos los componentes de página
-    let theme;
+function Index(){   
+    
     return (
-        <main className={`${theme}`}>
+        <main>
             <PrincipalImage />
             <section id="principal">               
                 <Navbar />

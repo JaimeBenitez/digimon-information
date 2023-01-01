@@ -3,9 +3,22 @@ import Navbar from './navbar';
 import PrincipalImage from "./principal-image";
 import SearchBars from "./search-bars";
 import Button from "./button";
-
+import LoggedButton from "./logged-button";
+import NotLoggedButton from "./not-logged-button";
+import { useNavigate } from "react-router-dom";
 
 function Index(){   
+    const navigate = useNavigate();
+
+   
+    function logOut(){        
+        if(window.confirm("Are you sure you want to log out? If you do your saved digimon list will lost")) {
+            localStorage.clear();
+            navigate("/"); 
+                    
+        }
+    }
+
     
     return (
         <main>
@@ -17,8 +30,10 @@ function Index(){
                     <SearchBars action="lista" />
                     <nav id="principal__nav-buttons">
                         <Button direction="contact">Contact</Button>
-                        <Button direction="register">Register</Button>
-                        <Button direction="login">Login</Button>
+                        <NotLoggedButton direction="register">Register</NotLoggedButton>
+                        <NotLoggedButton direction="login">Login</NotLoggedButton>
+                        <LoggedButton direction="contact">My List</LoggedButton>
+                        <button className={localStorage.getItem("user") ? "buttons" : "buttons--hide"} onClick={logOut}>Log out</button>
                     </nav>
                 
             </section>

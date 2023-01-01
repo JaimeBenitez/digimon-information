@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import BackArrow from "./back-arrow";
-import useScript from "../hooks/useScript";
+import { useNavigate } from "react-router-dom";
+
 
 //Podemos declarar variables fuera de la función componente y usarlos dentro del mismo
 /*El email puede tener cualquier caracter en cualquier cantidad siempre y cuando no sea una @, espacio o tabulación en la primera parte
@@ -13,14 +14,14 @@ const usernameRegexp = new RegExp(/^[\S]{3,20}$/);
 
 
 function RegisterForm(){
-    
+    const navigate = useNavigate();
     //validación de formulario
     const [values,setValues] = useState({
         username: "",
         password: "",
         email: "", 
         date: "",           
-        usernameError: "",   
+        usernameError: false,   
         passwordError: false,
         emailError: false,
         dateError: false,           
@@ -29,7 +30,17 @@ function RegisterForm(){
     function handleSubmit(e){
         
         e.preventDefault();
-        alert("All right, welcome to the digiworld!")
+        //Si todo el formulario es valido entonces aparece el alert
+        if(!values.usernameError && !values.passwordError && !values.emailError && !values.dateError){
+            localStorage.setItem("user",values.username);
+            localStorage.setItem("pass",values.password);
+            localStorage.setItem("email", values.email);
+            localStorage.setItem("registerDate", today);
+            localStorage.setItem("bornDate", values.date);   
+            alert("Alright, welcome to the digiworld!")
+            navigate("/"); 
+        }
+        
     }
 
     function handleChange(e){
@@ -104,7 +115,7 @@ function RegisterForm(){
             <fieldset id="register__fieldset"> 
                 <h2 className="register__subtitle">Register Data</h2> 
                 
-                <label  htmlFor="username" className="formLabel" id="firstLabel">Username</label>           
+                <label  htmlFor="username" className="formLabel firstLabel">Username</label>           
                 <input type="text" name="username" id="register__username" className="register__input" 
                 placeholder="Username" value={values.username} onChange={handleChange} onBlur={handleUsernameError} aria-errormessage="usernameError"
                 aria-invalid={values.usernameError} required/>

@@ -12,7 +12,7 @@ function Navbar(){
                 </ul>
                 <div className="nav__section">                    
                     <ModeButton />
-                    <a href="user.html"><img src={require("../assets/img/user-circle.svg").default} className="user__link" alt="user"/></a>
+                    <a href="user.html"><img src={require("../assets/img/user-circle.svg").default} className={localStorage.getItem('user') ? 'user__link' : 'user__link--hide'} alt="user"/></a>
                 </div>
                 
         </nav>

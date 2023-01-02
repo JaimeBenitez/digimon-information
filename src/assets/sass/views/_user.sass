@@ -2,6 +2,8 @@
 #user
     width: 50%
     padding: 20px
+    overflow: scroll
+    height: 100vh 
     @media only screen and (max-width: 800px)    
         width: 100%
 
@@ -18,6 +20,7 @@
     font-family: $font-title
     font-size: $size-subtitle
     text-align: center
+    cursor: default
 
 
 .user__subtitle
@@ -27,6 +30,7 @@
     font-size: 30px
     text-align: center
     margin-top: 20px
+    cursor: default
 
 .user__text   
     color: var(--secondary-color)
@@ -36,5 +40,14 @@
     text-align: center  
     margin-top: 10px  
 
+.user__text--hover
+    color: var(--secondary-color)
+    text-shadow: 1px 1px black
+    font-family: $font-text
+    font-size: $size-text
+    text-align: center  
+    margin-top: 10px
+    transform: scale(1.2)
+    cursor: url('../../img/tile000.png'), pointer
 
 

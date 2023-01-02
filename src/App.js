@@ -6,6 +6,7 @@ import Register from "./components/register";
 import Login from "./components/login";
 import Contact from "./components/contact";
 import Suggestions from "./components/suggestions";
+import User from "./components/user";
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/login.html" element= {<Login />} />
         <Route exact path="/contact.html" element= {<Contact />} />
         <Route exact path="/suggestions.html" element= {<Suggestions />} />
+        <Route exact path="/user.html" element= {<User />} />
       </Routes>
     </Router>
   );

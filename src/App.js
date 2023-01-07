@@ -7,6 +7,7 @@ import Login from "./components/login";
 import Contact from "./components/contact";
 import Suggestions from "./components/suggestions";
 import User from "./components/user";
+import List from "./components/list";
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/contact.html" element= {<Contact />} />
         <Route exact path="/suggestions.html" element= {<Suggestions />} />
         <Route exact path="/user.html" element= {<User />} />
+        <Route exact path="/list.html" element= {<List />} />
       </Routes>
     </Router>
   );

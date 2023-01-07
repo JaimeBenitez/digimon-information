@@ -1,9 +1,7 @@
 //Estilo para la pantalla de lista 
 .list__body
   background-color: var(--primary-color)
-  overflow: hidden 
-  @media only screen and (max-width: 800px)    
-    overflow: visible //Cuando la pantalla es pequeña es necesario poder hacer scroll
+  overflow: visible
 
 .list__main
   display: flex 
@@ -11,20 +9,11 @@
   align-items: center
   justify-content: center
   flex-direction: column
+  
 
 #list
   width: 100%
-  text-align: center
-  
-#list__logo  
-  width: 200px  
-  height: 100px  
-  
-.list__switch 
-  position: absolute
-  left: 0
-  margin-left: 10px
-  margin-top: 10px
+  text-align: center 
   
 .list__input
   border-radius: 30px 0px 0px 30px
@@ -62,16 +51,40 @@
   margin-left: 10px
   max-width: 150px
   min-width: 150px
-#list__share 
+
+#list__all 
   margin-left: 10px
   max-width: 150px
   min-width: 150px
+
+.error__title
+  color: var(--secondary-color)
+  text-shadow: 1px 1px black
+  font-family: $font-title
+  font-size: $size-subtitle
+  text-align: center
+  width:100%
+
+.error__subtitle
+  display: block
+  color: var(--secondary-color)  
+  font-family: $font-title
+  font-size: $size-text
+  text-align: center
+  margin-top: 10px
+  margin-bottom: 10px
+
+#error__img--meme
+  width: 200px
+  height: 300px
+
 
 #list__output
   width: 100%
   display: flex
   flex-direction: row
   justify-content: space-between
+  flex-wrap: wrap
   margin-top: 100px
   @media only screen and (max-width: 800px)    
     margin-top: 50px
@@ -84,11 +97,13 @@
   width: 30%
   margin-left: 10px
   margin-right: 10px
+  margin-bottom: 10px
   display: flex
   flex-wrap: wrap
   @media only screen and (max-width: 800px)  
     width: 90%
     margin-bottom: 20px  
+
 
 .list__output--img
   height: 200px  

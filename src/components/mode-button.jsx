@@ -19,7 +19,11 @@ function ModeButton({ isList }){
     useEffect(() => {
         localStorage.setItem('theme', theme);
         document.body.className = theme;
-    },  [theme]);
+        //Esto hace que aqui la pantalla tenga posibilidad de scrolling en toda la pantalla si hay overflow  
+        if(isList) {
+            document.body.classList.add("list__body");
+        }
+    },  [theme, isList]);
    
     return(        
         <label id="switch" className={isList ? "list__switch" : "switch"}>

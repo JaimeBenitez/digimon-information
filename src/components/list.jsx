@@ -2,22 +2,78 @@
 import React, {useState, useEffect} from "react";
 import ModeButton from "./mode-button";
 import Logo from "./logo";
+import Button from "./button";
+import BackArrow from "./back-arrow";
+import DigimonCard from "./digimon-card";
 
-
-
+//Lista que nos permitirá hacer la ordenación por nivel
+const levels = [
+  "Fresh",
+  "In Training",
+  "Rookie",
+  "Armor",
+  "Champion",
+  "Ultimate",
+  "Mega"              
+]
 function List () {
   
   const [result,setResult] = useState([]);
   const [nameValue,setName] = useState("");
   const [levelValue,setLevel] = useState("");
+  const [sortByName,setSortByName] = useState(undefined);
+  const [sortByLevel,setSortByLevel] = useState(undefined);
   
-  //Esto hace que aqui la pantalla tenga posibilidad de scrolling en toda la pantalla si hay overflow  
-  document.body.classList.add("list__body");
-
+ 
   function enableListButton(){
     document.getElementById("list__all").disabled = false;
   }
   
+  function handleSortByNameAsc(){    
+    setSortByName(false);
+  }
+  function handleSortByNameDesc(){    
+    setSortByName(true);
+  }
+
+  function handleSortByLevelAsc(){    
+    setSortByLevel(false);
+  }
+
+  function handleSortByLevelDesc(){    
+    setSortByLevel(true);
+  }
+ /*Funcion que ordena el map usando los check de los radio button y la funcion sort
+ Cuando devuelve 1 significa que b va antes que a, si es -1 a va antes de b
+ Cuando sortByLevel es true hablamos de lista descendiente, si es false hablamos de lista ascendente */
+  function sortResults(a,b){
+    if(sortByLevel !== undefined){     
+      //Comprobamos los indices de la lista de niveles 
+      if(levels.indexOf(a.level) < levels.indexOf(b.level)){
+        return sortByLevel ? 1 : -1;
+      }
+      else if(levels.indexOf(a.level) > levels.indexOf(b.level)){
+        return sortByLevel ? -1 : 1;
+      }
+      else{
+        if(sortByName !== undefined){           
+          if(a.name < b.name){
+            return sortByName ? 1 : -1;      
+          }else{      
+            return sortByName ? -1 : 1;      
+          }
+        }
+      }        
+    }else if(sortByName !== undefined){
+      if(a.name < b.name){
+        return sortByName ? 1 : -1;      
+      }else{      
+        return sortByName ? -1 : 1;      
+        }
+      }    
+    //Si no hay nada checkeado se deja tal cual sale de la API
+    return 0;
+  }
   
   function handleNameChange(e){
         
@@ -75,22 +131,34 @@ function List () {
     fetchData();
   }, []);    
   
-  //TODO Añadir la funcionalidad Save
-  //TODO Añadir boton hacia myList y el backarrow
-  //TODO Añadir ordenaciones (Quizas un sistema de radio buttons)
- 
+  //TODO Añadir la funcionalidad Save  
+
+  
+  console.log(result)
+
   return(
     <main className="list__main">
       <section id="list">
         <ModeButton isList={true}/>
         <Logo />
         <form  id="principal__form">   
-          <fieldset>             
+          <fieldset>      
+            <label htmlFor="list__sort--NameAscending" className="sortingLabels">Sort A-Z</label>
+            <input type="radio" name="list__sortName" className="list__sort" checked={sortByName === false} onChange={handleSortByNameAsc} />
+            <label htmlFor="list__sort--NameDescending" className="sortingLabels">Sort Z-A</label>
+            <input type="radio" name="list__sortName" className="list__sort" checked={sortByName === true} onChange={handleSortByNameDesc}/> 
+
             <input type="text" name="name" id="principal__name" className="principal__input" placeholder="Name" value={nameValue} onChange={handleNameChange} />
             <button type="submit" id="principal__name--submit" onClick={handleNameSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>
-            <button id="list__save" className="buttons" disabled>Save</button>                
+            <button id="list__save" className="buttons" disabled>Save</button>     
+                     
           </fieldset>                     
-          <fieldset>       
+          <fieldset> 
+            <label htmlFor="list__sort--LevelAscending" className="sortingLabels">Level Asc</label>
+            <input type="radio" name="list__sortLevel" className="list__sort" checked={sortByLevel === false} onChange={handleSortByLevelAsc}/>
+            <label htmlFor="list__sort--LevelDescending" className="sortingLabels">Level Desc</label>
+            <input type="radio" name="list__sortLevel" className="list__sort" checked={sortByLevel === true} onChange={handleSortByLevelDesc}/>  
+
             <select  name="level" id="principal__level" className="principal__input" value={levelValue} onChange={handleLevelChange}>                
               <option value='Fresh'>Fresh</option>
               <option value='In Training'>In Training</option>
@@ -109,30 +177,28 @@ function List () {
       <section id='list__output'>
         
         {
+          
           //Si result no es undefined saca el map
-          result ?
-           result.map((digimon,index) => (
-            <div key={index} className='list__output'>
-              <h2 className="list__output--title">{digimon.name}</h2>
-              <section className="list__output--section">
-                <img src={digimon.img} className="list__output--img" alt="digimon" />  
-              </section> 
-              <section className="list__output--section">             
-                  <h3 className="list__output--subtitle">{digimon.level}</h3>                 
-              </section>
-            </div>
-          ))
-          
-          : <div>
-            <h1 class="error__title">ERROR 400 - DIGIMON NOT FOUND</h1>
-            <h2 class="error__subtitle">Did you search for a Pokemon?</h2>
+          result ? 
+             //Esto nos permite realizar las ordenaciones segun los radios marcados
+            result.sort(sortResults)
+            .map((digimon,index) => (
+              <DigimonCard key={index} name={digimon.name} img={digimon.img} level={digimon.level} />
+            ))          
+                                
+          : <div id="digimon__meme">
+            <h1 className="error__title">ERROR 400 - DIGIMON NOT FOUND</h1>
+            <h2 className="error__subtitle">Did you search for a Pokemon?</h2>
             <img id="error__img--meme" src={require('../assets/img/digimon-meme.png')} alt='error'/>
-          </div>
-          
-        }
-        
-      </section>
+            </div>   
 
+        }    
+
+      </section>      
+      <nav className="list__nav">
+            <Button direction="myList" id="list__toMyList">My List</Button>
+            <BackArrow />
+      </nav>
     </main>
   )
 };

@@ -6,9 +6,9 @@ function Navbar(){
         <nav className="nav-rss">
                 <ul>
                     {/* Usamos el .default en las imagenes para que webpack no nos de problemas al cargarlas */}
-                    <li><a href="https://www.github.com" target="_blank" rel="noreferrer"><img src={require("../assets/img/github.svg").default} className="rss" alt="github" /></a></li>
-                    <li><a href="https://www.instagram.com" target="_blank " rel="noreferrer"><img src={require("../assets/img/instagram-filled.svg").default} className="rss" alt="instagram" /></a></li>
-                    <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer"><img src={require("../assets/img/twitter-logo-fill.svg").default} className="rss" alt="twitter" /></a></li>
+                    <li><a href="https://www.github.com" target="_blank" rel="noreferrer"><img src={require("../assets/img/github.svg").default} className="svg" alt="github" /></a></li>
+                    <li><a href="https://www.instagram.com" target="_blank " rel="noreferrer"><img src={require("../assets/img/instagram-filled.svg").default} className="svg" alt="instagram" /></a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer"><img src={require("../assets/img/twitter-logo-fill.svg").default} className="svg" alt="twitter" /></a></li>
                 </ul>
                 <div className="nav__section">                    
                     <ModeButton isList={false} />

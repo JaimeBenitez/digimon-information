@@ -1,5 +1,5 @@
 //Estilo para la pantalla de lista guardada por el usuario
-#myList__body
+.myList__body
   background-color: var(--primary-color)
   overflow: hidden 
   @media only screen and (max-width: 800px)      
@@ -22,6 +22,7 @@
 #myList__logo  
   width: 200px 
   height: 100px
+  
 
 #myList
   width: 100%  
@@ -30,48 +31,54 @@
   flex-direction: row
   justify-content: space-between  
 
-#myList__form  
-  padding-left: 100px
-  margin-top: 10px
+.myList__names  
+  margin-top: 50px
+  overflow: scroll
+  height: 60vh
   @media only screen and (max-width: 800px)  
     width: 100%
-    padding-left: 0px
+    
 
-.myList__byLevel
-  display: none
-  
-.myList__byType
+.myList__names::-webkit-scrollbar
   display: none
 
-.show
-  display: block
-
-.myList__radio
-  margin-left: 20px
-
-.myList__label, .myList__subtitles  
-  color: var(--secondary-color)
-  text-shadow: 1px 1px black  
-  font-family: $font-title
-  font-size: $size-subtitle 
-  margin-top: 40px
-  margin-left: 5px
-
-.myList__subtitles 
+.myList__title
   display: block
   margin-top: 20px
+  text-align: center
+  color: var(--secondary-color)
+  font-size: $size-subtitle
+  font-family: $font-title
+  text-shadow: 1px 1px black
+
+.myList__nameList
+  display: flex
+  justify-content: center
+  align-items: center
+
+.myList__deleteButton
+  background-color: transparent
+  margin-left: 200px
+  margin-top: 12px
+  margin-right: 10px
+  width: 30px
+  @media only screen and (max-width: 800px)  
+    margin-left: 0
+
+
+  
 
 .myList__digimon
+ 
   height: auto
-
-.myList__digimon > li 
-  display: block
+  display: inline
+  background-color: transparent
   color: var(--secondary-color)
   text-shadow: 1px 1px black  
   font-family: $font-text
   font-size: $size-text 
   margin-top: 10px
-  cursor: pointer
+  cursor: url('../../img/tile000.png'), pointer
 
 .myList__img__container
   width: 48%
@@ -90,12 +97,11 @@
 .myList__output
   background-color: var(--secondary-color)  
   width: 48%
-  height: 460px 
-  flex-wrap: wrap 
-  position: absolute
-  top: 149
-  right: 100
-  display: none
+  height: 450px 
+  margin-top: 50px
+  margin-right: 100px
+  flex-wrap: wrap   
+  display: flex
   @media only screen and (max-width: 800px)
     top: 50
 
@@ -109,8 +115,8 @@
   @media only screen and (max-width: 800px)  
     height: 40%
 
-.output__show
-  display: flex
+.output__hide
+  display: none
   //En el caso del modo móvil, necesitamos que el contenedor ocupe toda la pantalla
   @media only screen and (max-width: 800px)    
     width: 100vw

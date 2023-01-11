@@ -1,7 +1,60 @@
-//Estilo para la pantalla de lista 
 .list__body
-  background-color: var(--primary-color)
   overflow: visible
+//Establecemos el espacio entre el formulario y los titulos con margin-top
+#principal__form
+  margin-top: 30px
+
+//Estilo de las cajas de input, esto también incluye el select
+.principal__input
+  border-radius: 30px 0px 0px 30px
+  height: 40px
+  width: 50%  
+  background-color: var(--search-color)
+  font-family: $font-text
+  font-size: $size-text
+
+//Le damos estilo y espaciado a nuestro placeholder
+#principal__name
+  text-indent: 15px
+  color: var(--text-color)
+
+//Estilo del boton del primer submit
+#principal__name--submit
+  background-color: var(--secondary-color)
+  border-radius: 0px 30px 30px 0px
+  height: 40px
+  width: 50px  
+  cursor: url('../../img/veemon-re.gif'), pointer
+
+//Estilo del segundo input, esto nos permite que esté debajo y algo separado del primero
+#principal__level 
+  display: block
+  margin-top: 10px
+  padding-left: 10px
+
+//Estilo del boton del 2º submit, hay que colocarle el margen para que se alinee con la caja del select
+#principal__level--submit
+  background-color: var(--secondary-color)
+  border-radius: 0px 30px 30px 0px
+  height: 40px
+  width: 50px
+  margin-top:10px
+  cursor: url('../../img/veemon-re.gif'), pointer
+
+//Estas agrupaciónes nos permiten centrar los inputs con sus botones y quitar bordes no deseados
+fieldset
+  display: flex
+  align-items: center
+  justify-content: center
+  border: 0px
+
+//Como en _reset hemos reseteado los bordes, por alguna razon por defecto nos coloca el color principal,
+//de esta manera lo quitamos
+span 
+  background-color: transparent
+  
+option
+  background-color: transparent
 
 .list__main
   display: flex 
@@ -59,14 +112,15 @@
   cursor: pointer
   
 #list__save 
-  margin-left: 10px
-  max-width: 150px
-  min-width: 150px
+  margin-top: 10px
+  margin-left: 10px  
+  width: 70%
+  border: 1px solid
 
 #list__all 
-  margin-left: 10px
-  max-width: 150px
-  min-width: 150px
+  margin-top: 10px
+  margin-left: 10px  
+  width: 150px
 
 .error__title
   color: var(--secondary-color)
@@ -102,10 +156,15 @@
   flex-direction: row
   justify-content: center
   flex-wrap: wrap
-  margin-top: 50px
+  margin-top: 25px 
+  overflow: scroll   
   @media only screen and (max-width: 800px)      
-    flex-direction: column
-    
+    display: block
+
+
+#list__output::-webkit-scrollbar
+  display: none
+      
 
 .list__output
   background-color: var(--secondary-color) 
@@ -117,13 +176,38 @@
   flex-wrap: wrap
   @media only screen and (max-width: 800px)  
     width: 90%
-    margin-bottom: 20px  
+    margin-bottom: 20px 
 
+.list__output--selected
+  background-color: var(--secondary-color) 
+  width: 30%
+  margin-left: 10px
+  margin-right: 10px
+  margin-bottom: 10px
+  display: flex
+  flex-wrap: wrap
+  box-shadow: inset 0 0 0 3px black
+  @media only screen and (max-width: 800px)  
+    width: 90%
+    margin-bottom: 20px 
+
+.list__output:hover
+  transform: scale(1.02)
+
+.list__output--selected:hover
+  transform: scale(1.02)
 
 .list__output--img
-  height: 200px  
-  width: 200px  
+  height: 90%  
+  width: 90%  
   display: inline
+
+.list__output--section
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  width: 50%
 
 .list__output--title
   color: var(--text-color)
@@ -140,7 +224,7 @@
   font-size: $size-text
   text-align: center
   margin-top: 40px
-  margin-left: 100px
+  
 
 .img__container
   padding: 20px

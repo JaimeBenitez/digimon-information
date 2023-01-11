@@ -23,6 +23,9 @@ function List () {
   const [levelValue,setLevel] = useState("");
   const [sortByName,setSortByName] = useState(undefined);
   const [sortByLevel,setSortByLevel] = useState(undefined);
+ 
+  
+  
   
  
   function enableListButton(){
@@ -130,11 +133,7 @@ function List () {
   useEffect(() => {        
     fetchData();
   }, []);    
-  
-  //TODO Añadir la funcionalidad Save  
-
-  
-  console.log(result)
+ 
 
   return(
     <main className="list__main">
@@ -150,7 +149,7 @@ function List () {
 
             <input type="text" name="name" id="principal__name" className="principal__input" placeholder="Name" value={nameValue} onChange={handleNameChange} />
             <button type="submit" id="principal__name--submit" onClick={handleNameSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>
-            <button id="list__save" className="buttons" disabled>Save</button>     
+            
                      
           </fieldset>                     
           <fieldset> 
@@ -168,10 +167,11 @@ function List () {
               <option value='Ultimate'>Ultimate</option>
               <option value='Mega'>Mega</option>                        
             </select>
-            <button type="submit" id="principal__level--submit" onClick={handleLevelSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>
-            {/* El comportamiento por defecto de list__all al ser un boton dentro de un formulario recargará la pag, sacando el listado completo */}
-            <button id="list__all" className="buttons" disabled>List All</button>  
+            <button type="submit" id="principal__level--submit" onClick={handleLevelSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>            
+            
           </fieldset>
+          {/* El comportamiento por defecto de list__all al ser un boton dentro de un formulario recargará la pag, sacando el listado completo */}
+          <button id="list__all" className="buttons" disabled>List All</button>  
         </form>
       </section>
       <section id='list__output'>

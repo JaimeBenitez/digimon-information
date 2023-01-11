@@ -36,3 +36,28 @@
   margin-top: 170px
   width: 100%
 
+#calumon
+  width: 60px
+  height: 60px
+
+.calumon-hide
+  position: absolute
+  right: -100vw  
+  z-index: 1   
+  width: 50vw
+  height: 100vh     
+  object-fit: cover
+  object-position: center top
+  transition: all 2s ease
+
+.calumon-show
+  position: absolute 
+  background-color: transparent  
+  z-index: 1  
+  width: 30vw 
+  height: 100vh 
+  object-fit: cover  
+  right: 23vw
+  transition: all 2s ease
+  @media only screen and (max-width: 800px)        
+    right: 43vw

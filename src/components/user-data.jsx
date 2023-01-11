@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import BackArrow from "./back-arrow";
 
+    
+
 function UserData(){
     //Creamos un estado para cada hover, ya que si usamos un mismo estado para todos, todos se activan a la vez
     const [userIsActive, setUserActive] = useState(
@@ -38,6 +40,17 @@ function UserData(){
         setBornActive(!bornIsActive);
     };
 
+    const digimonList = localStorage.getItem("digimonlist").split(",")
+
+   
+    let count = 0;
+
+    for(let i = 0; i < digimonList.length; i++){
+        
+        count++;
+    }
+
+
     return(
         <section className="user__data"> 
                 <span className="user__title">User Data</span> 
@@ -52,7 +65,7 @@ function UserData(){
 
                 <span className="user__subtitle">Digimon Saved:</span>                        
                 <span className={savedIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleSavedHover} onMouseLeave={handleSavedHover}>
-                    10</span>
+                    {count}</span>
 
                 <span className="user__subtitle">Member since:</span>  
                 <span className={memberIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleMemberHover} onMouseLeave={handleMemberHover}>

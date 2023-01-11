@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import Navbar from './navbar';
 import PrincipalImage from "./principal-image";
 import PrincipalButton from "./principal-button";
@@ -9,11 +9,26 @@ import { useNavigate } from "react-router-dom";
 
 function Index(){   
     const navigate = useNavigate();
-
-    //Para quitar el overflow en el caso de que se venga desde una página de lista
-    document.body.classList.remove("list__body");
-    
    
+    
+    
+    const [isActive, setActive] = useState(
+        false
+    );
+
+    
+    const handleToogle = () => {        
+        setActive(!isActive);
+
+    }
+    
+    const showCalumon = setTimeout(handleToogle,5000);
+    //Este condicional prevendra que el settimeout se ejecute nuevamente ya que React va recargando constantemente los componentes
+    if (isActive) {
+        clearTimeout(showCalumon);
+    }
+    
+
     function logOut(){        
         if(window.confirm("Are you sure you want to log out? If you do your saved digimon list will lost")) {
             localStorage.clear();
@@ -37,11 +52,12 @@ function Index(){
                         <Button direction="contact">Contact</Button>
                         <NotLoggedButton direction="register">Register</NotLoggedButton>
                         <NotLoggedButton direction="login">Login</NotLoggedButton>
-                        <LoggedButton direction="contact">My List</LoggedButton>
+                        <LoggedButton direction="myList">My List</LoggedButton>
                         <button className={localStorage.getItem("user") ? "buttons" : "buttons--hide"} onClick={logOut}>Log out</button>
                     </nav>
                 
-            </section>
+            </section>            
+            <img src={require('../assets/img/calumon.gif')} alt="calumon" id="calumon" className={isActive ? 'calumon-show' : 'calumon-hide'}/>            
         </main>
     )
 

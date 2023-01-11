@@ -40,7 +40,10 @@ function MyList () {
     digimonDelete(digimon)
     }
   }
-
+  function handleDigimonBack(){
+    setIsClicked(false); //Esto nos permitirá hacer desaparecer la tarjeta en responsive
+    setResult(undefined); 
+  }
 
   function handleSubmit(e){ 
     e.preventDefault();
@@ -113,9 +116,12 @@ function MyList () {
                 </section> 
                 <section className="myList__output--section">  
                     <span className="myList__output--subtitle">Level</span>           
-                    <span className="myList__output--text"> {result[0].level}</span>                    
+                    <span className="myList__output--text"> {result[0].level}</span>
+                    
                 </section>
-                <button id="greymon__back" className="digimon__back"><img src={require('../assets/img/back-arrow.svg')} className="digimon__arrow"  alt='back'/></button>
+                
+                <button  className="digimon__back" onClick={handleDigimonBack}><img src={require('../assets/img/back-arrow.svg').default} className="digimon__arrow"  alt='back'/></button>
+                
           </div>
       :
       <div className={isClicked ? 'output-hide' : 'myList__img__container'}>

@@ -104,7 +104,14 @@
   display: flex
   @media only screen and (max-width: 800px)
     top: 50
-
+    width: 100vw
+    height: 100vh
+    z-index: 1
+    top: 0
+    right: 0
+    align-items: center
+    position: absolute
+    margin: 0
 
 .myList__output--section
   display: flex
@@ -117,28 +124,16 @@
 
 .output__hide
   display: none
-  //En el caso del modo móvil, necesitamos que el contenedor ocupe toda la pantalla
-  @media only screen and (max-width: 800px)    
-    width: 100vw
-    height: 100vh
-    z-index: 1
-    top: 0
-    right: 0
-    align-items: center
+  
+ 
+ 
 
 .myList__output--img
   height: 300px  
   width: 300px  
   display: inline
 
-//Especificamos esta imagen ya que debido a las medidas originales de la imagen necesita una media query diferente
-.tyrannomon__img
-  height: 300px  
-  width: 300px  
-  display: inline
-  @media only screen and (max-width: 1300px) 
-    height: 200px
-    width: 200px
+
 
 .img__hide
   display: none
@@ -167,23 +162,29 @@
   font-size: $size-text
   text-align: center
   margin-bottom: 40px
-  
+
+
 .digimon__back
   background-color: transparent
-  display: none
-  float: right
+  display: none  
+  height: 40px
+  width: 40px
+  position: absolute
+  right: 5px
+  bottom: 5px
   @media only screen and (max-width: 800px) 
-    display: inline   
+    display: block  
+    
 
 .digimon__arrow
   height: 40px  
   width: 40px 
   cursor: pointer
-  position: absolute
-  right: 5
-  bottom: 5
+  
   @media only screen and (max-width: 800px)  
     display: inline
+    z-index: 2
+
 
 .myList__nav
   display: flex
@@ -200,5 +201,7 @@
   width: 30px
   padding-right: 20px
   align-self:  flex-end
+  
+ 
 
 

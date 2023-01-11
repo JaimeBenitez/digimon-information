@@ -40,8 +40,10 @@ function UserData(){
         setBornActive(!bornIsActive);
     };
 
-    const digimonList = localStorage.getItem("digimonlist").split(",")
-
+    let digimonList = []
+    if(localStorage.getItem("digimonlist")){
+    digimonList = localStorage.getItem("digimonlist").split(",")
+    }
    
     let count = 0;
 
@@ -56,23 +58,23 @@ function UserData(){
                 <span className="user__title">User Data</span> 
 
                 <span className="user__subtitle">Username</span>
-                <span className={userIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleUserHover} onMouseLeave={handleUserHover}>
+                <span className={userIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleUserHover} onMouseLeave={handleUserHover}>
                     {localStorage.getItem("user")}</span>  
 
                 <span className="user__subtitle">Email:</span>                        
-                <span className={emailIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleEmailHover} onMouseLeave={handleEmailHover}>
+                <span className={emailIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleEmailHover} onMouseLeave={handleEmailHover}>
                     {localStorage.getItem("email")}</span>
 
                 <span className="user__subtitle">Digimon Saved:</span>                        
-                <span className={savedIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleSavedHover} onMouseLeave={handleSavedHover}>
+                <span className={savedIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleSavedHover} onMouseLeave={handleSavedHover}>
                     {count}</span>
 
                 <span className="user__subtitle">Member since:</span>  
-                <span className={memberIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleMemberHover} onMouseLeave={handleMemberHover}>
+                <span className={memberIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleMemberHover} onMouseLeave={handleMemberHover}>
                     {localStorage.getItem("registerDate")}</span>
 
                 <span className="user__subtitle">Born in:</span>                        
-                <span className={bornIsActive ? 'user__text' : 'user__text--hover'} onMouseOver={handleBornHover} onMouseLeave={handleBornHover}>
+                <span className={bornIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleBornHover} onMouseLeave={handleBornHover}>
                     {localStorage.getItem("bornDate")}</span>    
 
                 <BackArrow />

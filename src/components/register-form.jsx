@@ -27,8 +27,7 @@ function RegisterForm(){
         dateError: false,           
     });
 
-    function handleSubmit(e){
-        
+    function handleSubmit(e){        
         e.preventDefault();
         //Si todo el formulario es valido entonces aparece el alert
         if(!values.usernameError && !values.passwordError && !values.emailError && !values.dateError){
@@ -39,20 +38,17 @@ function RegisterForm(){
             localStorage.setItem("bornDate", values.date);   
             alert("Alright, welcome to the digiworld!")
             navigate("/"); 
-        }
-        
+        }        
     }
 
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;
         const { name, value } = target;
-
         // Clonamos el estado actual modificando solo el valor del input que lanzó el evento
         const newValues = {
             ...values, [name]: value,
         };
-
         //Por ultimo sincronizamos el nuevo estado
         setValues(newValues);
     }
@@ -63,14 +59,12 @@ function RegisterForm(){
         setValues((prevState) => ({ ...prevState, usernameError}));
     }
 
-    function handleEmailError(){
-        
+    function handleEmailError(){        
         const emailError = !emailRegexp.test(values.email);
         setValues((prevState) => ({ ...prevState, emailError}));
     }
 
-    function handlePasswordError(){
-        
+    function handlePasswordError(){        
         const passwordError = !passwordRegexp.test(values.password);
         setValues((prevState) => ({ ...prevState, passwordError}));
     }
@@ -96,14 +90,12 @@ function RegisterForm(){
             testYear = false
         }
 
-        const dateError = !testDays || !testYear;
+        const dateError = !testDays || !testYear;       
         
-        console.log(dateError)
         setValues((prevState) => ({ ...prevState, dateError}));
-
     }
         //Seteamos el dia maximo al dia de hoy
-       const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0];
        
     //Fin de validación
     
@@ -140,17 +132,15 @@ function RegisterForm(){
                 <label  htmlFor="date" className="formLabel">Borndate</label>
                 <input type="date" name="date" id="register__date" className="register__input"  value={values.date} onChange={handleChange}
                  onBlur={handleDateError} aria-errormessage="dateError" aria-invalid={values.dateError} max={today} required/>  
-                  <span className="error" id="dateError" aria-live="assertive" style={{visibility: values.dateError ? "visible" : "hidden"}}>
+                <span className="error" id="dateError" aria-live="assertive" style={{visibility: values.dateError ? "visible" : "hidden"}}>
                     Borndate invalid. Please enter a valid borndate</span> 
 
                 <button type="submit" name="submit" id="register__submit" className="buttons">Submit</button>
                 <a href="login.html" id="register__toLogin">Do you have an account? Go to login</a>
                 <img src={require("../assets/img/Agumon_registro-sf.png")} alt="agumon" id="register__img" />
                 <BackArrow />                        
-            </fieldset>    
-                       
-        </form>
-        
+            </fieldset>                        
+        </form>        
     )
 }
 export default RegisterForm;

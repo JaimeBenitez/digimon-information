@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import React from 'react';
-import './assets/sass/App.sass';
+import React from "react";
+import "./assets/sass/App.sass";
 import Index from "./components/index";
 import Register from "./components/register";
 import Login from "./components/login";

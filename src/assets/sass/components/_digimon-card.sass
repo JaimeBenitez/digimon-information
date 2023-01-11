@@ -1,0 +1,58 @@
+.list__card
+  background-color: var(--secondary-color) 
+  width: 30%
+  margin-left: 10px
+  margin-right: 10px
+  margin-bottom: 10px
+  display: flex
+  flex-wrap: wrap
+  @media only screen and (max-width: 800px)  
+    width: 90%
+    margin-bottom: 20px 
+
+.list__card--selected
+  background-color: var(--secondary-color) 
+  width: 30%
+  margin-left: 10px
+  margin-right: 10px
+  margin-bottom: 10px
+  display: flex
+  flex-wrap: wrap
+  box-shadow: inset 0 0 0 3px black
+  @media only screen and (max-width: 800px)  
+    width: 90%
+    margin-bottom: 20px 
+
+.list__card:hover
+  transform: scale(1.02)
+
+.list__card--selected:hover
+  transform: scale(1.02)
+
+.list__card--img
+  height: 90%  
+  width: 90%  
+  display: inline
+
+.list__card--section
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  width: 50%
+
+.list__card--title
+  color: var(--text-color)
+  text-shadow: 1px 1px black
+  font-family: $font-title
+  font-size: $size-subtitle
+  text-align: center
+  width:100%
+
+.list__card--subtitle
+  display: block
+  color: var(--text-color)  
+  font-family: $font-title
+  font-size: $size-text
+  text-align: center
+  margin-top: 40px

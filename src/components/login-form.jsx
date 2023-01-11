@@ -25,17 +25,7 @@ function LoginForm(){
         passwordError: false,                  
     });
 
-    if(localStorage && values.username === "" && values.password === ""){
-        //Esto hace que cuando el usuario entre al formulario, si ya entro con anterioridad, este se rellene solo
-        //Es importante hacer la comprobacion de si está vacio, ya que si no no nos dejara cambiar el estado
-        if(localStorage.getItem('user')){
-            values.username = localStorage.getItem('user');
-        }
-        if(localStorage.getItem('pass')){
-            
-            values.password = localStorage.getItem('pass');
-        }
-    }
+    
 
     function handleSubmit(e){
         
@@ -55,8 +45,7 @@ function LoginForm(){
             }
         if(!values.usernameError && !values.passwordError && submitValid){
             
-            localStorage.setItem("user",values.username);
-            localStorage.setItem("pass",values.password);             
+            localStorage.setItem("user",values.username);                        
             alert(`Welcome back, ${values.username}`);  
             navigate("/");          
         }else{

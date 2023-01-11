@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from './navbar';
+import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import BackArrow from "./back-arrow";
 
@@ -7,7 +7,7 @@ import BackArrow from "./back-arrow";
 function Contact(){
     //Usamos el estado para cambiar la clase del elemento que queremos
     const [isActive, setActive] = useState(
-        "false"
+        false
     );
     const handleToogle = (e) => {
         e.preventDefault();
@@ -31,7 +31,7 @@ function Contact(){
                     </fieldset>                
                 </form>                               
             </section>
-            <section className= {isActive ? 'hide' : 'show'}>
+            <section className= {isActive ? "show" : "hide"}>
                 <h2 className="collaborators__title">Original API Idea</h2>
                 <h3 className="collaborators__subtitle">Shadow Smith</h3>
                 <h2 className="collaborators__title">Web Development <span className="collaborators__title--span">& Design</span></h2>

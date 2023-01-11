@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import Navbar from './navbar';
+import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import PrincipalButton from "./principal-button";
 import Button from "./button";
@@ -57,12 +57,8 @@ function Index(){
                     </nav>
                 
             </section>            
-            <img src={require('../assets/img/calumon.gif')} alt="calumon" id="calumon" className={isActive ? 'calumon-show' : 'calumon-hide'}/>            
+            <img src={require("../assets/img/calumon.gif")} alt="calumon" id="calumon" className={isActive ? "calumon-show" : "calumon-hide"}/>            
         </main>
     )
-
-
-
 }
-
-export default Index
+export default Index;

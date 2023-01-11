@@ -22,16 +22,11 @@ function List () {
   const [nameValue,setName] = useState("");
   const [levelValue,setLevel] = useState("");
   const [sortByName,setSortByName] = useState(undefined);
-  const [sortByLevel,setSortByLevel] = useState(undefined);
- 
-  
-  
-  
+  const [sortByLevel,setSortByLevel] = useState(undefined);  
  
   function enableListButton(){
     document.getElementById("list__all").disabled = false;
-  }
-  
+  }  
   function handleSortByNameAsc(){    
     setSortByName(false);
   }
@@ -146,11 +141,8 @@ function List () {
             <input type="radio" name="list__sortName" className="list__sort" checked={sortByName === false} onChange={handleSortByNameAsc} />
             <label htmlFor="list__sort--NameDescending" className="sortingLabels">Sort Z-A</label>
             <input type="radio" name="list__sortName" className="list__sort" checked={sortByName === true} onChange={handleSortByNameDesc}/> 
-
             <input type="text" name="name" id="principal__name" className="principal__input" placeholder="Name" value={nameValue} onChange={handleNameChange} />
-            <button type="submit" id="principal__name--submit" onClick={handleNameSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>
-            
-                     
+            <button type="submit" id="principal__name--submit" onClick={handleNameSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>       
           </fieldset>                     
           <fieldset> 
             <label htmlFor="list__sort--LevelAscending" className="sortingLabels">Level Asc</label>
@@ -159,22 +151,21 @@ function List () {
             <input type="radio" name="list__sortLevel" className="list__sort" checked={sortByLevel === true} onChange={handleSortByLevelDesc}/>  
 
             <select  name="level" id="principal__level" className="principal__input" value={levelValue} onChange={handleLevelChange}>                
-              <option value='Fresh'>Fresh</option>
-              <option value='In Training'>In Training</option>
-              <option value='Rookie'>Rookie</option>
-              <option value='Armor'>Armor</option>
-              <option value='Champion'>Champion</option>
-              <option value='Ultimate'>Ultimate</option>
-              <option value='Mega'>Mega</option>                        
+              <option value="Fresh">Fresh</option>
+              <option value="In Training">In Training</option>
+              <option value="Rookie">Rookie</option>
+              <option value="Armor">Armor</option>
+              <option value="Champion">Champion</option>
+              <option value="Ultimate">Ultimate</option>
+              <option value="Mega">Mega</option>                        
             </select>
-            <button type="submit" id="principal__level--submit" onClick={handleLevelSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>            
-            
+            <button type="submit" id="principal__level--submit" onClick={handleLevelSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>  
           </fieldset>
           {/* El comportamiento por defecto de list__all al ser un boton dentro de un formulario recargará la pag, sacando el listado completo */}
           <button id="list__all" className="buttons" disabled>List All</button>  
         </form>
       </section>
-      <section id='list__output'>
+      <section id="list__output">
         
         {
           
@@ -184,14 +175,13 @@ function List () {
             result.sort(sortResults)
             .map((digimon,index) => (
               <DigimonCard key={index} name={digimon.name} img={digimon.img} level={digimon.level} />
-            ))          
-                                
+            ))   
+                                            
           : <div id="digimon__meme">
             <h1 className="error__title">ERROR 400 - DIGIMON NOT FOUND</h1>
             <h2 className="error__subtitle">Did you search for a Pokemon?</h2>
-            <img id="error__img--meme" src={require('../assets/img/digimon-meme.png')} alt='error'/>
+            <img id="error__img--meme" src={require("../assets/img/digimon-meme.png")} alt="error"/>
             </div>   
-
         }    
 
       </section>      

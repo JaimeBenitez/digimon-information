@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from './navbar';
+import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import RegisterForm from "./register-form";
 

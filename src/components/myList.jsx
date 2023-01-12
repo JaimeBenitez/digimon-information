@@ -12,27 +12,33 @@ function MyList () {
   
   const [result,setResult] = useState(undefined); 
   const [isClicked,setIsClicked] = useState(false);   
+  const [digimonList,setDigimonList] = useState(localStorage.getItem("digimonlist") ? localStorage.getItem("digimonlist").split(",") : []);
   
 
-  let digimonList = []
-    //Si está en la lista ya no se incluirá
-  if(localStorage.getItem("digimonlist")){
-    digimonList = localStorage.getItem("digimonlist").split(",");  
-  }  
+  // let digimonList = []
+  //   //Si está en la lista ya no se incluirá
+  // if(localStorage.getItem("digimonlist")){
+  //   digimonList = localStorage.getItem("digimonlist").split(",");  
+  // }  
   function handleClicked(){
     setIsClicked(true);
   }
   
-  function digimonDelete(digimon){    
+  function digimonDelete(digimon){ 
+    //OJO - Si hacemos newDigimonList = digimonList nos dara problemas porque hara los cambios a la vez en ambas listas y el renderizado fallara
+    //Esta es la mejor manera de clonar un array de manera segura
+    let newDigimonList = [].concat(digimonList)  
     for(let i=0; i<digimonList.length; i++){
-      if(digimonList[i] === digimon){
-        digimonList.splice(i, 1);
+      if(newDigimonList[i] === digimon){
+        newDigimonList.splice(i, 1);        
       }
-    }
-    localStorage.setItem("digimonlist", digimonList);      
+    }    
+    setDigimonList(newDigimonList);
+    localStorage.setItem("digimonlist", digimonList);        
   }  
 
-  function handleDelete(digimon){   
+  function handleDelete(e,digimon){  
+    e.preventDefault() 
     if(window.confirm("Are you sure you want to delete this digimon?")){
     digimonDelete(digimon)
     }
@@ -90,7 +96,7 @@ function MyList () {
         {digimonList.map((digimon,index) =>(
           
           <div key={index} className="myList__nameList">            
-            <button type="submit" className="myList__deleteButton" onClick={() => handleDelete(digimon)} value={digimon}><img src={require("../assets/img/delete.svg").default} className="svg myList__delete" alt="delete" /></button>
+            <button type="submit" className="myList__deleteButton" onClick={(e) => handleDelete(e,digimon)} value={digimon}><img src={require("../assets/img/delete.svg").default} className="svg myList__delete" alt="delete" /></button>
             <button  type="submit" className= "myList__digimon" onClick={handleSubmit} value={digimon}>{digimon}</button>            
           </div>
         ))

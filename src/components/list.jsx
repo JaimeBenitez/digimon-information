@@ -167,7 +167,8 @@ function List () {
             </select>
             <button type="submit" id="principal__level--submit" onClick={handleLevelSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>  
           </fieldset>
-          {/* El comportamiento por defecto de list__all al ser un boton dentro de un formulario recargará la pag, sacando el listado completo */}
+          {/* Al estar el boton inicialmente deshabilitado, aunque lo habilites mediante una función no te permite llamar apropiadamente a eventos, de ahi la necesidad
+          de un 2º botón */}
           <button id={isEnabled ? "list__all--hide" : "list__all--disabled"} type="submit" className="buttons" onClick={handleListAll} disabled>List All</button>
           <button id={isEnabled ? "list__all--enabled" : "list__all--hide"} type="submit" className="buttons" onClick={handleListAll}>List All</button>    
         </form>

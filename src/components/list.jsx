@@ -20,12 +20,13 @@ function List () {
   
   const [result,setResult] = useState([]);
   const [nameValue,setName] = useState("");
-  const [levelValue,setLevel] = useState("");
+  const [levelValue,setLevel] = useState("Fresh");
   const [sortByName,setSortByName] = useState(undefined);
   const [sortByLevel,setSortByLevel] = useState(undefined);  
+  const [isEnabled,setIsEnabled] = useState(false);
  
   function enableListButton(){
-    document.getElementById("list__all").disabled = false;
+    setIsEnabled(true)
   }  
   function handleSortByNameAsc(){    
     setSortByName(false);
@@ -92,13 +93,18 @@ function List () {
   function handleNameSubmit(e){
     e.preventDefault();
     enableListButton();    
-    fetchData(nameValue,undefined)
+    fetchData(nameValue,undefined);
 
-}
+  }
   function handleLevelSubmit(e){
     e.preventDefault();
     enableListButton();
-    fetchData(undefined,levelValue)
+    fetchData(undefined,levelValue);
+  }
+
+  function handleListAll(e){    
+    e.preventDefault();    
+    fetchData();
   }
 
   async function fetchData (digimonName = undefined, digimonLevel = undefined){    
@@ -162,7 +168,8 @@ function List () {
             <button type="submit" id="principal__level--submit" onClick={handleLevelSubmit}><span className="fa-solid fa-magnifying-glass"></span></button>  
           </fieldset>
           {/* El comportamiento por defecto de list__all al ser un boton dentro de un formulario recargará la pag, sacando el listado completo */}
-          <button id="list__all" className="buttons" disabled>List All</button>  
+          <button id={isEnabled ? "list__all--hide" : "list__all--disabled"} type="submit" className="buttons" onClick={handleListAll} disabled>List All</button>
+          <button id={isEnabled ? "list__all--enabled" : "list__all--hide"} type="submit" className="buttons" onClick={handleListAll}>List All</button>    
         </form>
       </section>
       <section id="list__output">

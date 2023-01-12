@@ -1,3 +1,9 @@
+/**
+ * @file index.jsx - Index page
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
+
 import React,{ useState } from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
@@ -9,17 +15,17 @@ import { useNavigate } from "react-router-dom";
 
 function Index(){   
     const navigate = useNavigate();
-   
-    
-    
+        
     const [isActive, setActive] = useState(
         false
     );
 
-    
+    /**
+     * Funcion que usando el setTimeOut cambiara el estado y permitirá mostrar al digimon en pantalla tras 5 segs   
+     *      
+     */
     const handleToogle = () => {        
         setActive(!isActive);
-
     }
     
     const showCalumon = setTimeout(handleToogle,5000);
@@ -28,7 +34,10 @@ function Index(){
         clearTimeout(showCalumon);
     }
     
-
+    /**
+     * Funcion que lanza una pantalla de confirmación y, de confirmar el usuario la acción, borrará todos los datos del localStorage y redirigirá al index     
+     *    
+     */
     function logOut(){        
         if(window.confirm("Are you sure you want to log out? If you do your saved digimon list will lost")) {
             localStorage.clear();

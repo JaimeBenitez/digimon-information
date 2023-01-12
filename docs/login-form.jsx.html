@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: login-form.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: login-form.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file login-form.jsx - Login Form Component
+ * @author Jaime Benitez
+ * @see &lt;a href="https://jaimebenitez.com" target="_blank">Jaime Benitez &lt;/a>
+ */
+import React,{ useState } from "react";
+import BackArrow from "./back-arrow";
+import { useNavigate } from "react-router-dom";
+
+/**
+    * Lista de usuarios registrados
+    * @type {Array&lt;Object>} 
+    *  
+    */
+const usuariosRegistrados = [
+    {user: "crisangar", pass: "Edu_03", email: "crisangar03@gmail.com" , registerDate: "03-05-2021", bornDate: "05-05-1990"},
+    {user: "demonSlayer", pass: "Miloka_69", email: "demonSlayer69@gmail.com", registerDate: "07-09-2021", bornDate: "05-07-1988"},
+    {user: "javi_2000", pass: "tiranosaurusRex999", email: "javi_2000@gmail.com", registerDate: "05-12-2021", bornDate: "11-02-1994"},
+    {user: "digiFan", pass: "Digital_Freak", email: "digiFreak@gmail.com", registerDate: "08-05-2022", bornDate: "02-05-1992"}
+]
+
+function LoginForm(){
+    //Nos servirá para hacer la redirección desde nuestro formulario
+    const navigate = useNavigate();    
+    
+    //validación de formulario
+    const [values,setValues] = useState({
+        username: "",
+        password: "",                   
+        usernameError: false,   
+        passwordError: false,                  
+    });
+
+    
+    /**
+    * Funcion que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. De lo contrario muestra un error
+    * @param {string} e - El evento que activa la función, en este caso un click
+    *  
+    */
+    function handleSubmit(e){
+        
+        e.preventDefault();
+        //Si todo el formulario es valido entonces aparece el alert. Es importante comprobar también aqui para que, no solo sean validos,
+        //sino que la contraseña coincida con la del usuario introducido
+        let submitValid = false 
+            for(let i=0;i&lt;usuariosRegistrados.length;i++){
+                if(values.username === usuariosRegistrados[i].user &amp;&amp; values.password === usuariosRegistrados[i].pass){
+                    //Aprovechamos el bucle para meter en el localStorage los datos de usuario que no introducimos en el formulario
+                    localStorage.setItem("email", usuariosRegistrados[i].email);
+                    localStorage.setItem("registerDate", usuariosRegistrados[i].registerDate);
+                    localStorage.setItem("bornDate", usuariosRegistrados[i].bornDate);
+                    submitValid = true;
+                    break;
+                }
+            }
+        if(!values.usernameError &amp;&amp; !values.passwordError &amp;&amp; submitValid){
+            
+            localStorage.setItem("user",values.username);                        
+            alert(`Welcome back, ${values.username}`);  
+            navigate("/");          
+        }else{
+            alert("Username and password not match")
+        }
+        
+    }
+    /**
+    * Funcion que controla el estado al cambiar algo dentro de los inputs
+    * @param {string} e - El evento que activa la función, en este caso un cambio dentro de un input
+    *  
+    */
+    function handleChange(e){
+        //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
+        const { target } = e;
+        const { name, value } = target;
+
+        // Clonamos el estado actual modificando solo el valor del input que lanzó el evento
+        const newValues = {
+            ...values, [name]: value,
+        };
+        
+        //Por ultimo sincronizamos el nuevo estado
+        setValues(newValues);
+    }
+
+    /**
+    * Funcion que testea si el usuario existe y si no muestra un error al quitar el foco del input del nombre de usuario.
+    * Esto solo ocurrirá cuando se quite el foco del elemento, previninendo que el usuario vea el mensaje de error mientras rellena el campo
+    *  
+    */
+    function handleUsernameError(){    
+        let userValid = false;
+        for(let i=0;i&lt;usuariosRegistrados.length;i++){
+            if(values.username === usuariosRegistrados[i].user){
+                userValid = true;
+                break;
+            }
+        }
+        const usernameError = !userValid;
+        setValues((prevState) => ({ ...prevState, usernameError}));
+    }    
+
+    /**
+    * Funcion que testea si el usuario existe y si no muestra un error al quitar el foco del input del nombre de usuario. 
+    *     
+    */
+    function handlePasswordError(){
+        
+        let passwordValid = false;
+        for(let i=0;i&lt;usuariosRegistrados.length;i++){
+            if(values.password === usuariosRegistrados[i].pass){
+                passwordValid = true;
+                break;
+            }
+        }
+        const passwordError = !passwordValid;
+        setValues((prevState) => ({ ...prevState, passwordError}));
+    }    
+    //Fin de validación
+
+    //OnBlur se activa al retirar el foco de un elemento
+    return (
+        &lt;form onSubmit={handleSubmit} id="login__form">   
+                &lt;fieldset id="login__fieldset"> 
+                    &lt;h2 className="login__subtitle">Login&lt;/h2> 
+                    
+                    &lt;label  htmlFor="username" className="formLabel firstLabel">Username&lt;/label> 
+                    &lt;input type="text" name="username" id="login__username" className="login__input" placeholder="Username" 
+                    onChange={handleChange} value={values.username} onBlur={handleUsernameError} aria-errormessage="usernameError"
+                    aria-invalid={values.usernameError} required/>
+                    &lt;span className="error" id="usernameError" aria-live="assertive" style={{visibility: values.usernameError ? "visible" : "hidden"}}>
+                    This user does not exist&lt;/span>
+
+                    &lt;label  htmlFor="password" className="formLabel">Password&lt;/label>
+                    &lt;input type="password" name="password" id="login__password" className="login__input" placeholder="Password" 
+                    onChange={handleChange} value={values.password} onBlur={handlePasswordError} aria-errormessage="passwordError"
+                    aria-invalid={values.passwordError} required/>         
+                    &lt;span className="error" id="passwordError" aria-live="assertive" style={{visibility: values.passwordError ? "visible" : "hidden"}}>
+                    Incorrect password&lt;/span>     
+
+                    &lt;button type="submit" name="login__submit" id="login__submit" className="buttons">Submit&lt;/button>
+                    &lt;a href="register.html" id="login__toRegister">Don't you have an account? Go to register&lt;/a>
+                    &lt;img src={require("../assets/img/Gabumon-sf.png")} alt="gabumon" id="login__img" />
+                    &lt;BackArrow />
+                &lt;/fieldset>                
+        &lt;/form>
+        
+    )
+}
+export default LoginForm;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emailRegexp">emailRegexp</a></li><li><a href="global.html#levels">levels</a></li><li><a href="global.html#passwordRegexp">passwordRegexp</a></li><li><a href="global.html#suggestionRegexp">suggestionRegexp</a></li><li><a href="global.html#usernameRegexp">usernameRegexp</a></li><li><a href="global.html#usuariosRegistrados">usuariosRegistrados</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 12 2023 20:30:57 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

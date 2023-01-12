@@ -1,3 +1,8 @@
+/**
+ * @file navbar.jsx - Navbar Component
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
 import React from "react";
 import ModeButton from "./mode-button";
 

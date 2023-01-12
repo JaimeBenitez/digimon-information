@@ -1,3 +1,9 @@
+/**
+ * @file register-form.jsx - Register Form Component
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
+
 import React,{ useState } from "react";
 import BackArrow from "./back-arrow";
 import { useNavigate } from "react-router-dom";
@@ -6,10 +12,22 @@ import { useNavigate } from "react-router-dom";
 //Podemos declarar variables fuera de la función componente y usarlos dentro del mismo
 /*El email puede tener cualquier caracter en cualquier cantidad siempre y cuando no sea una @, espacio o tabulación en la primera parte
 Luego tendrá una @, luego otro set igual que en la primera parte, un punto y finalmente otro set del mismo tipo*/
+/**
+* Regex para validar el email
+* @type {Object} 
+*/
 const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
-/* La contraseña debera tener al menos una mayuscula, minuscula y digito,permite caracteres especiales y contara de entre 8 y 16 caracteres*/ 
+// La contraseña debera tener al menos una mayuscula, minuscula y digito, permite caracteres especiales y contara de entre 8 y 16 caracteres
+/**
+* Regex para validar la contraseña
+* @type {Object} 
+*/ 
 const passwordRegexp = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/);
 //El usuario admitirá cualquier caracter pero tendrá entre 3 y 20 caracteres
+/**
+* Regex para validar el nombre de usuario
+* @type {Object} 
+*/
 const usernameRegexp = new RegExp(/^[\S]{3,20}$/);
 
 
@@ -27,6 +45,11 @@ function RegisterForm(){
         dateError: false,           
     });
 
+    /**
+    * Funcion que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos reenvia al index
+    * @param {string} e - El evento que activa la función, en este caso un click
+    *  
+    */
     function handleSubmit(e){        
         e.preventDefault();
         //Si todo el formulario es valido entonces aparece el alert
@@ -41,6 +64,11 @@ function RegisterForm(){
         }        
     }
 
+    /**
+    * Funcion que controla el estado al cambiar algo dentro de los inputs
+    * @param {string} e - El evento que activa la función, en este caso un cambio dentro de un input
+    *  
+    */
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;
@@ -52,6 +80,11 @@ function RegisterForm(){
         //Por ultimo sincronizamos el nuevo estado
         setValues(newValues);
     }
+
+    /**
+    * Funcion que controla la salida del mensaje de error en el campo de nombre de usuario    
+    *  
+    */
     function handleUsernameError(){
         //Testea si pasa la regex y de no ser asi lanza el error. Esto solo ocurrirá cuando se quite el foco del elemento, previninendo
         //que el usuario vea el mensaje de error mientras rellena el campo
@@ -59,16 +92,28 @@ function RegisterForm(){
         setValues((prevState) => ({ ...prevState, usernameError}));
     }
 
+    /**
+    * Funcion que controla la salida del mensaje de error en el campo de email  
+    *  
+    */
     function handleEmailError(){        
         const emailError = !emailRegexp.test(values.email);
         setValues((prevState) => ({ ...prevState, emailError}));
     }
 
+    /**
+    * Funcion que controla la salida del mensaje de error en el campo de contraseña
+    *  
+    */
     function handlePasswordError(){        
         const passwordError = !passwordRegexp.test(values.password);
         setValues((prevState) => ({ ...prevState, passwordError}));
     }
 
+    /**
+    * Funcion que controla la salida del mensaje de error en el campo de fecha de nacimiento
+    *  
+    */
     function handleDateError(){
         //Comprobación de la fecha, aunque el tipo date ya comprueba todo esto es mejor revalidar por si el usuario modifica el HTML
         //Ojo que el tipo date le da la vuelta a la fecha, empieza por años
@@ -94,12 +139,14 @@ function RegisterForm(){
         
         setValues((prevState) => ({ ...prevState, dateError}));
     }
-        //Seteamos el dia maximo al dia de hoy
+    /**
+    * Seteamos el dia maximo al dia de hoy
+    * @type {object}
+    *  
+    */    
     const today = new Date().toISOString().split("T")[0];
        
-    //Fin de validación
-    
-    
+    //Fin de validación  
 
     //OnBlur se activa al retirar el foco de un elemento
     return (

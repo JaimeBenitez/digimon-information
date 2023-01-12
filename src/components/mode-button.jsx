@@ -1,3 +1,8 @@
+/**
+ * @file mode-button.jsx - Mode Button Component
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
 import React,{ useState, useEffect } from "react";
 import "../assets/sass/App.sass";
 
@@ -8,7 +13,10 @@ function ModeButton({ isList, isMyList }){
         localStorage.getItem("theme") || "light"
     );
     
-
+    /**
+     * Funcion que cambia el tema entre modo oscuro y claro, se activa con un click
+     *     
+     */
     const toggleTheme = () => {
         if (theme === "light") {
             setTheme("dark");

@@ -1,3 +1,10 @@
+/**
+ * @file user.jsx - User Page
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
+
+
 import React from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";

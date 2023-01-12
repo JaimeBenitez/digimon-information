@@ -1,0 +1,20 @@
+{
+    "plugins": [],
+    "recurseDepth": 30,
+    "source": {
+        "include": "src/",
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "opts": {
+        "template": "templates/default",
+        "encoding": "utf8",              
+        "destination": "./docs/",        
+        "recurse": true
+    }
+}

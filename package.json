@@ -17,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "doc": "jsdoc -c docs/conf.json"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +40,8 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "jsdoc": "^4.0.0",
+    "react-styleguidist": "^13.0.0",
     "sass": "^1.56.2"
   }
 }

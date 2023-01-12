@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: suggestions.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: suggestions.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file suggestions.jsx - Suggestions Page
+ * @author Jaime Benitez
+ * @see &lt;a href="https://jaimebenitez.com" target="_blank">Jaime Benitez &lt;/a>
+ */
+
+import React, { useState } from "react";
+import Navbar from "./navbar";
+import PrincipalImage from "./principal-image";
+import BackArrow from "./back-arrow";
+
+//Esta regexp nos permite establecer que minimo se necesiten 3 palabras para que sea válido el campo
+/**
+* Regex para validar el text area
+* @type {Object} 
+*/ 
+const suggestionRegexp = new RegExp(/^[\w',]+\s[\w',]+\s[\w',]+/gm);
+
+function Suggestions(){
+    
+    const [values,setValues] = useState({
+        suggestion: "",                  
+        suggestionError: false,                     
+    });
+
+
+    /**
+    * Funcion que comprueba si los datos registrados son correctos y de ser asi te muestra un mensaje en un alert
+    * @param {string} e - El evento que activa la función, en este caso un click
+    *  
+    */
+    function handleSubmit(e){        
+        e.preventDefault();
+        //Si todo el formulario es valido entonces aparece el alert
+        if(!values.suggestionError){
+            alert("Thanks for share with us your opinions, the digital world its a little bit better day by day thanks to your suggestions")
+        }        
+    }
+    /**
+    * Funcion que controla el estado al cambiar algo dentro del text area
+    * @param {string} e - El evento que activa la función, en este caso un cambio dentro de un input
+    *  
+    */
+    function handleChange(e){
+        //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
+        const { target } = e;
+        const { name, value } = target;
+
+        // Clonamos el estado actual modificando solo el valor del input que lanzó el evento
+        const newValues = {
+            ...values, [name]: value,
+        };
+
+        //Por ultimo sincronizamos el nuevo estado
+        setValues(newValues);
+    }
+    /**
+    * Funcion que controla la salida del mensaje de error en el campo de sugerencias
+    *    
+    */
+    function handleSuggestionError(){        
+        const suggestionError = !suggestionRegexp.test(values.suggestion);
+        setValues((prevState) => ({ ...prevState, suggestionError}));
+    }
+    return (
+        &lt;main>        
+            &lt;PrincipalImage />   
+            &lt;section id="suggestions">
+                &lt;Navbar />              
+                &lt;form  id="suggestions__form" onSubmit={handleSubmit}>   
+                    &lt;fieldset id="suggestions__fieldset"> 
+                        &lt;h2 className="suggestions__subtitle">Suggestions&lt;/h2>
+
+                        &lt;textarea  cols="30" rows="5" id="suggestions__textarea" name="suggestion" placeholder="Write your suggestions" value={values.suggestion}
+                         onChange={handleChange} onBlur={handleSuggestionError} aria-errormessage="suggestionError"
+                        aria-invalid={values.suggestionError} required>&lt;/textarea>        
+                        &lt;span className="error" id="suggestionError" aria-live="assertive" style={{visibility: values.suggestionError ? "visible" : "hidden"}}>
+                        Suggestion invalid. It should have at least 3 words&lt;/span>
+
+                        &lt;button type="submit" id="suggestions__submit" className="buttons">Submit&lt;/button>
+                        &lt;img src={require("../assets/img/Patamon-sf.png")} alt ="patamon" id="contact__img" />
+                        &lt;BackArrow />
+                    &lt;/fieldset>                
+                &lt;/form>                               
+            &lt;/section>
+           
+    &lt;/main>
+    )
+}
+
+export default Suggestions;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emailRegexp">emailRegexp</a></li><li><a href="global.html#levels">levels</a></li><li><a href="global.html#passwordRegexp">passwordRegexp</a></li><li><a href="global.html#suggestionRegexp">suggestionRegexp</a></li><li><a href="global.html#usernameRegexp">usernameRegexp</a></li><li><a href="global.html#usuariosRegistrados">usuariosRegistrados</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 12 2023 20:30:57 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

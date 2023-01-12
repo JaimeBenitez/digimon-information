@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: user-data.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: user-data.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file user-data.jsx - User Data Component
+ * @author Jaime Benitez
+ * @see &lt;a href="https://jaimebenitez.com" target="_blank">Jaime Benitez &lt;/a>
+ */
+
+
+import React, { useState } from "react";
+import BackArrow from "./back-arrow";
+
+    
+
+function UserData(){
+    //Creamos un estado para cada hover, ya que si usamos un mismo estado para todos, todos se activan a la vez
+    const [userIsActive, setUserActive] = useState(
+        "false"
+    );
+    /**
+    * Funcion que controla el hover del nombre de usuario
+    *    
+    */
+    const handleUserHover = () =>{
+        setUserActive(!userIsActive);
+    };
+
+    const [emailIsActive, setEmailActive] = useState(
+        "false"
+    );
+
+    /**
+    * Funcion que controla el hover del email
+    *  
+    */
+    const handleEmailHover = () =>{
+        setEmailActive(!emailIsActive);
+    };
+
+    const [savedIsActive, setSavedActive] = useState(
+        "false"
+    );
+    /**
+    * Funcion que controla el hover del numero de digimon guardados 
+    *  
+    */
+    const handleSavedHover = () =>{
+        setSavedActive(!savedIsActive);
+    };
+
+    const [memberIsActive, setMemberActive] = useState(
+        "false"
+    );
+
+    /**
+    * Funcion que controla el hover de la fecha de union a la página
+    *  
+    */
+    const handleMemberHover = () =>{
+        setMemberActive(!memberIsActive);
+    };
+
+    const [bornIsActive, setBornActive] = useState(
+        "false"
+    );
+
+    /**
+    * Funcion que controla el hover de la fecha de nacimiento
+    *  
+    */
+    const handleBornHover = () =>{
+        setBornActive(!bornIsActive);
+    };
+
+    let digimonList = []
+    if(localStorage.getItem("digimonlist")){
+    digimonList = localStorage.getItem("digimonlist").split(",")
+    }
+   
+    let count = 0;
+
+    for(let i = 0; i &lt; digimonList.length; i++){
+        
+        count++;
+    }
+
+
+    return(
+        &lt;section className="user__data"> 
+                &lt;span className="user__title">User Data&lt;/span> 
+
+                &lt;span className="user__subtitle">Username&lt;/span>
+                &lt;span className={userIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleUserHover} onMouseLeave={handleUserHover}>
+                    {localStorage.getItem("user")}&lt;/span>  
+
+                &lt;span className="user__subtitle">Email:&lt;/span>                        
+                &lt;span className={emailIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleEmailHover} onMouseLeave={handleEmailHover}>
+                    {localStorage.getItem("email")}&lt;/span>
+
+                &lt;span className="user__subtitle">Digimon Saved:&lt;/span>                        
+                &lt;span className={savedIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleSavedHover} onMouseLeave={handleSavedHover}>
+                    {count}&lt;/span>
+
+                &lt;span className="user__subtitle">Member since:&lt;/span>  
+                &lt;span className={memberIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleMemberHover} onMouseLeave={handleMemberHover}>
+                    {localStorage.getItem("registerDate")}&lt;/span>
+
+                &lt;span className="user__subtitle">Born in:&lt;/span>                        
+                &lt;span className={bornIsActive ? "user__text" : "user__text--hover"} onMouseOver={handleBornHover} onMouseLeave={handleBornHover}>
+                    {localStorage.getItem("bornDate")}&lt;/span>    
+
+                &lt;BackArrow />
+            &lt;/section>  
+    )
+}
+export default UserData;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emailRegexp">emailRegexp</a></li><li><a href="global.html#levels">levels</a></li><li><a href="global.html#passwordRegexp">passwordRegexp</a></li><li><a href="global.html#suggestionRegexp">suggestionRegexp</a></li><li><a href="global.html#usernameRegexp">usernameRegexp</a></li><li><a href="global.html#usuariosRegistrados">usuariosRegistrados</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 12 2023 20:30:57 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

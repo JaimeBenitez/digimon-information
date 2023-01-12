@@ -1,3 +1,9 @@
+/**
+ * @file contact.jsx - Contact page
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
+
 import React, { useState } from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
@@ -9,6 +15,11 @@ function Contact(){
     const [isActive, setActive] = useState(
         false
     );
+    /**
+     * Funcion que cambia el estado para mostrar el panel de colaboradores
+     * @param {string} e - El evento que activa la función, en este caso click
+     *      
+     */
     const handleToogle = (e) => {
         e.preventDefault();
         setActive(!isActive);

@@ -1,3 +1,10 @@
+/**
+ * @file user-data.jsx - User Data Component
+ * @author Jaime Benitez
+ * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
+ */
+
+
 import React, { useState } from "react";
 import BackArrow from "./back-arrow";
 
@@ -8,35 +15,58 @@ function UserData(){
     const [userIsActive, setUserActive] = useState(
         "false"
     );
-    const handleUserHover = (e) =>{
+    /**
+    * Funcion que controla el hover del nombre de usuario
+    *    
+    */
+    const handleUserHover = () =>{
         setUserActive(!userIsActive);
     };
 
     const [emailIsActive, setEmailActive] = useState(
         "false"
     );
-    const handleEmailHover = (e) =>{
+
+    /**
+    * Funcion que controla el hover del email
+    *  
+    */
+    const handleEmailHover = () =>{
         setEmailActive(!emailIsActive);
     };
 
     const [savedIsActive, setSavedActive] = useState(
         "false"
     );
-    const handleSavedHover = (e) =>{
+    /**
+    * Funcion que controla el hover del numero de digimon guardados 
+    *  
+    */
+    const handleSavedHover = () =>{
         setSavedActive(!savedIsActive);
     };
 
     const [memberIsActive, setMemberActive] = useState(
         "false"
     );
-    const handleMemberHover = (e) =>{
+
+    /**
+    * Funcion que controla el hover de la fecha de union a la página
+    *  
+    */
+    const handleMemberHover = () =>{
         setMemberActive(!memberIsActive);
     };
 
     const [bornIsActive, setBornActive] = useState(
         "false"
     );
-    const handleBornHover = (e) =>{
+
+    /**
+    * Funcion que controla el hover de la fecha de nacimiento
+    *  
+    */
+    const handleBornHover = () =>{
         setBornActive(!bornIsActive);
     };
 

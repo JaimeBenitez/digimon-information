@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: myList.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: myList.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file myList.jsx - My List Page
+ * @author Jaime Benitez
+ * @see &lt;a href="https://jaimebenitez.com" target="_blank">Jaime Benitez &lt;/a>
+ */
+
+
+import React, {useState, useEffect} from "react";
+import ModeButton from "./mode-button";
+import Logo from "./logo";
+import Button from "./button";
+import BackArrow from "./back-arrow";
+
+
+
+
+function MyList () {
+  
+  const [result,setResult] = useState(undefined); 
+  const [isClicked,setIsClicked] = useState(false);   
+  const [digimonList,setDigimonList] = useState(localStorage.getItem("digimonlist") ? localStorage.getItem("digimonlist").split(",") : []);
+  
+
+  /**
+   * Funcion que cambia el estado de IsClicked y nos permite mostrar la tarjeta del digimon
+   *  
+   */ 
+  function handleClicked(){
+    setIsClicked(true);
+  }
+  /**
+   * Funcion que nos permite cambiar el estado de la lista de digimons, borrando el digimon elegido
+   * @param {string} digimon - El digimon que queremos borrar
+   *  
+   */ 
+  function digimonDelete(digimon){ 
+    //OJO - Si hacemos newDigimonList = digimonList nos dara problemas porque hara los cambios a la vez en ambas listas y el renderizado fallara
+    //Esta es la mejor manera de clonar un array de manera segura
+    let newDigimonList = [].concat(digimonList)  
+    for(let i=0; i&lt;digimonList.length; i++){
+      if(newDigimonList[i] === digimon){
+        newDigimonList.splice(i, 1);        
+      }
+    }    
+    setDigimonList(newDigimonList);
+    localStorage.setItem("digimonlist", digimonList);        
+  }  
+  /**
+   * Funcion que nos permite activar con un click la funcion de borrar digimon, mostrandonos antes un mensaje de confirmación
+   * @param {String} e - El evento con el que se activa la funcion, en este caso un click
+   * @param {string} digimon - El digimon que queremos borrar
+   *  
+   */ 
+  function handleDelete(e,digimon){  
+    e.preventDefault() 
+    if(window.confirm("Are you sure you want to delete this digimon?")){
+    digimonDelete(digimon)
+    }
+  }
+
+  /**
+   * Funcion que nos permite hacer desaparecer con un click la tarjeta de digimon en modo responsive  
+   *  
+   */ 
+  function handleDigimonBack(){
+    setIsClicked(false); //Esto nos permitirá hacer desaparecer la tarjeta en responsive
+    setResult(undefined); 
+  }
+  /**
+   * Funcion que activa la tarjeta asociada al digimon que se está clickando
+   * @param {string} e - El evento que activa la funcion, en este caso un click 
+   *  
+   */ 
+  function handleSubmit(e){ 
+    e.preventDefault();
+    handleClicked();    
+    const { target } = e;
+    const { value } = target;  
+    fetchData(value)
+  }
+  /**
+   * Funcion asincrona que realiza la llamada por nombre a la API usando el nombre del digimon clickado
+   * @param {string} digimonName - El nombre del digimon a mostrar 
+   *  
+   */ 
+  async function fetchData (digimonName){    
+    if(digimonName){
+      let url = `https://digimon-api.vercel.app/api/digimon/name/${digimonName}`      
+      try {      
+        const response = await fetch(url);
+        if(response.status === 200){
+          const json = await response.json();    
+          setResult(json);    
+        }                            
+      } catch (error) {                
+          console.log("error", error);
+      }
+    }else{
+      //Si no recibe un nombre no devuelve nada
+      return
+    }  
+  } 
+    
+  useEffect(() =>{       
+    fetchData()    
+  }, []);   
+  
+  return(
+    //Como en esta pagina si tenemos un header usamos una empty tag para devolver mas de un elemento
+    &lt;>
+    &lt;header id="myList__header">
+      &lt;ModeButton isMyList={true}/> 
+      &lt;div>          
+        &lt;Logo isMyList={true}/>
+        &lt;span className="myList__title">My saved list&lt;/span>
+      &lt;/div>    
+    &lt;/header>
+    &lt;main id="myList__main">             
+      &lt;section id="myList">        
+        &lt;form className="myList__names">  
+            {/* Para poder pasar parametros en el onClick es necesario crear una funcion anonima en el mismo onclick */}
+        {digimonList.map((digimon,index) =>(
+          
+          &lt;div key={index} className="myList__nameList">            
+            &lt;button type="submit" className="myList__deleteButton" onClick={(e) => handleDelete(e,digimon)} value={digimon}>&lt;img src={require("../assets/img/delete.svg").default} className="svg myList__delete" alt="delete" />&lt;/button>
+            &lt;button  type="submit" className= "myList__digimon" onClick={handleSubmit} value={digimon}>{digimon}&lt;/button>            
+          &lt;/div>
+        ))
+        }                 
+        &lt;/form> 
+        {          
+          result  ?
+          //Al devolvernos un array es necesario sacar el indice 0 del resultado
+          &lt;div className={isClicked ? 'myList__output' : 'output-hide'} >
+                &lt;span className="myList__output--title">{result[0].name}&lt;/span>
+                &lt;section className="myList__output--section">
+                &lt;img src={result[0].img} className="myList__output--img" alt='digimon img'/>  
+                &lt;/section> 
+                &lt;section className="myList__output--section">  
+                    &lt;span className="myList__output--subtitle">Level&lt;/span>           
+                    &lt;span className="myList__output--text"> {result[0].level}&lt;/span>                    
+                &lt;/section>
+                
+                &lt;button  className="digimon__back" onClick={handleDigimonBack}>&lt;img src={require('../assets/img/back-arrow.svg').default} className="digimon__arrow"  alt='back'/>&lt;/button>                
+          &lt;/div>
+          :
+          &lt;div className={isClicked ? 'output-hide' : 'myList__img__container'}>
+            &lt;picture>
+              &lt;source
+                media="(min-width: 980px)"
+                srcSet={require("../assets/img/wallpaper.jpg")}/>                            
+              &lt;source srcSet={require("../assets/img/Omegamon_tri.png")}/>
+              &lt;img src={require("../assets/img/wallpaper.jpg")} className="myList__img" alt="digimon" />   
+            &lt;/picture>    
+        &lt;/div> 
+        }               
+      &lt;/section>      
+      &lt;nav className="list__nav">
+            &lt;Button direction="list" id="myList__toList">List&lt;/Button>
+            &lt;BackArrow />
+      &lt;/nav>
+    &lt;/main>
+    &lt;/>
+  )
+
+};
+
+export default MyList;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emailRegexp">emailRegexp</a></li><li><a href="global.html#levels">levels</a></li><li><a href="global.html#passwordRegexp">passwordRegexp</a></li><li><a href="global.html#suggestionRegexp">suggestionRegexp</a></li><li><a href="global.html#usernameRegexp">usernameRegexp</a></li><li><a href="global.html#usuariosRegistrados">usuariosRegistrados</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 12 2023 20:30:57 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

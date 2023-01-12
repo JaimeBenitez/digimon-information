@@ -1,5 +1,5 @@
-.list__body
-  overflow: visible
+// .list__body
+//   overflow: visible
 //Establecemos el espacio entre el formulario y los titulos con margin-top
 #principal__form
   margin-top: 30px
@@ -165,9 +165,14 @@ option
   justify-content: center
   flex-wrap: wrap
   margin-top: 25px 
-  overflow: scroll   
+  overflow: scroll 
+  height: 55vh   
+  // El scrollbar-width es solo para mozilla
+  scrollbar-width: none
   @media only screen and (max-width: 800px)      
     display: block
+
+
 
 
 #list__output::-webkit-scrollbar

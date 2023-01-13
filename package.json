@@ -1,6 +1,5 @@
 {
-  "name": "digimon-information",  
-  "homepage": "https://jaimebenitez.github.io/digimon-information/",
+  "name": "digimon-information",    
   "version": "0.1.0",
   "private": false,
   "dependencies": {

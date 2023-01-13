@@ -25,4 +25,4 @@ Este proyecto se encuentra documentado con JSDoc.
 
 ## Despliegue
 
-Esta aplicación ha sido desplegada con Netlify y puedes visitarla tanto en la sección About del proyecto como [aquí](voluble-tulumba-b9cf5a.netlify.app/) 
+Esta aplicación ha sido desplegada con Netlify y puedes visitarla tanto en la sección About del proyecto como [aquí](https://voluble-tulumba-b9cf5a.netlify.app/) 

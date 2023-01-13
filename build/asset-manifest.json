@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/digimon-information/static/css/main.47ba6b33.css",
+    "main.js": "/digimon-information/static/js/main.a7a4219c.js",
+    "static/media/digimon.jpg": "/digimon-information/static/media/digimon.c0c97ab9fa1803f59c4e.jpg",
+    "static/media/digimon-meme.png": "/digimon-information/static/media/digimon-meme.eb09be41b36ac6e076e1.png",
+    "static/media/Digimon-Adventure-2020.jpg": "/digimon-information/static/media/Digimon-Adventure-2020.a4af934411e1eaf0ecee.jpg",
+    "static/media/Gabumon-sf.png": "/digimon-information/static/media/Gabumon-sf.ac055deed81898415b3f.png",
+    "static/media/Patamon-sf.png": "/digimon-information/static/media/Patamon-sf.81d3e74fb2e25b3c5a6b.png",
+    "static/media/Omegamon_tri.png": "/digimon-information/static/media/Omegamon_tri.56722259807d25a49111.png",
+    "static/media/Agumon_registro-sf.png": "/digimon-information/static/media/Agumon_registro-sf.33f9f8438fe9940eed15.png",
+    "static/media/wallpaper.jpg": "/digimon-information/static/media/wallpaper.4509f164d28c4a6db678.jpg",
+    "static/media/logo.png": "/digimon-information/static/media/logo.f2b7fc9771d31bf2a542.png",
+    "static/media/veemon-re.gif": "/digimon-information/static/media/veemon-re.fb7f9c1cbab2f9411d35.gif",
+    "static/media/calumon.gif": "/digimon-information/static/media/calumon.c1c4311739b404be776f.gif",
+    "static/media/instagram-filled.svg": "/digimon-information/static/media/instagram-filled.a506cb21e9a7b1d00b37842e408de8af.svg",
+    "index.html": "/digimon-information/index.html",
+    "static/media/github.svg": "/digimon-information/static/media/github.0fe72871d19a3bf699bc9afe6542d138.svg",
+    "static/media/back-arrow.svg": "/digimon-information/static/media/back-arrow.26df5082f9326cf0e96968f03b9e6f7f.svg",
+    "static/media/twitter-logo-fill.svg": "/digimon-information/static/media/twitter-logo-fill.5fd5d9bebf8a6b64800aab403155d2a2.svg",
+    "static/media/user-circle.svg": "/digimon-information/static/media/user-circle.9cc62d1423665a380c325699dde4a6f7.svg",
+    "static/media/delete.svg": "/digimon-information/static/media/delete.33b3e4af4766ba660a04ed2f60ba9f2c.svg",
+    "main.47ba6b33.css.map": "/digimon-information/static/css/main.47ba6b33.css.map",
+    "main.a7a4219c.js.map": "/digimon-information/static/js/main.a7a4219c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47ba6b33.css",
+    "static/js/main.a7a4219c.js"
+  ]
+}

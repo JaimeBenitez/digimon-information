@@ -5,7 +5,11 @@
  */
 
 import React from "react";
-
+/**
+* Componente consistente en un enlace que permite volver al index
+* @returns {JSX} 
+*      
+*/
 function backArrow(){
     return(
         <a href="/" id="back"><img src={require("../assets/img/back-arrow.svg").default} alt="back" className="arrow" /></a>

@@ -16,19 +16,23 @@ import BackArrow from "./back-arrow";
 */ 
 const suggestionRegexp = new RegExp(/^[\w',]+\s[\w',]+\s[\w',]+/gm);
 
+
+/**
+* Componente que renderiza la pantalla de sugerencias<br/>
+* Funcionalidades: <br/>
+* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que comprueba si los datos registrados son correctos y de ser asi te muestra un mensaje en un alert <br/>
+* - handleChange(e: Evento que activa la función, en este caso un cambio en el input): Función que controla el estado al cambiar algo dentro del text area <br/>
+* - handleSuggestionError(): Función que controla la salida del mensaje de error en el campo de sugerencias <br/>
+* @returns {JSX} 
+*      
+*/
 function Suggestions(){
     
     const [values,setValues] = useState({
         suggestion: "",                  
         suggestionError: false,                     
     });
-
-
-    /**
-    * Funcion que comprueba si los datos registrados son correctos y de ser asi te muestra un mensaje en un alert
-    * @param {string} e - El evento que activa la función, en este caso un click
-    *  
-    */
+   
     function handleSubmit(e){        
         e.preventDefault();
         //Si todo el formulario es valido entonces aparece el alert
@@ -36,11 +40,7 @@ function Suggestions(){
             alert("Thanks for share with us your opinions, the digital world its a little bit better day by day thanks to your suggestions")
         }        
     }
-    /**
-    * Funcion que controla el estado al cambiar algo dentro del text area
-    * @param {string} e - El evento que activa la función, en este caso un cambio dentro de un input
-    *  
-    */
+    
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;

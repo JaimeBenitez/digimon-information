@@ -6,6 +6,11 @@
 import React from "react";
 import ModeButton from "./mode-button";
 
+/**
+* Componente que renderiza la navbar
+* @returns {JSX} 
+*      
+*/
 function Navbar(){
     return(
         <nav className="nav-rss">

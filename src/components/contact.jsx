@@ -9,17 +9,18 @@ import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import BackArrow from "./back-arrow";
 
-
+/**
+* Componente que renderiza la página de contacto. <br/>
+* Funcionalidades: <br/>
+* - handleToogle(e: Evento que activa la función. En este caso un click) Cambia el estado para mostrar el panel de colaboradores <br/>
+* @returns {JSX}       
+*/
 function Contact(){
     //Usamos el estado para cambiar la clase del elemento que queremos
     const [isActive, setActive] = useState(
         false
     );
-    /**
-     * Funcion que cambia el estado para mostrar el panel de colaboradores
-     * @param {string} e - El evento que activa la función, en este caso click
-     *      
-     */
+    
     const handleToogle = (e) => {
         e.preventDefault();
         setActive(!isActive);

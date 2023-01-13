@@ -6,7 +6,11 @@
 
 import React from "react";
 
-
+/**
+* Componente que renderiza la imagen que ocupa la mitad de la pantalla en la mayoria de pantallas
+* @returns {JSX} 
+*      
+*/
 function PrincipalImage (){
     return (
         <picture>

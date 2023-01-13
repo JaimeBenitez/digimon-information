@@ -9,7 +9,13 @@ import React, { useState } from "react";
 import BackArrow from "./back-arrow";
 
     
-
+/**
+* Componente que renderiza los datos del usuario<br/>
+* Funcionalidades: <br/>
+* - handle[User|Email|Saved|Member|Born]Hover(): Funciones que controlan el hover de su elemento correspondiente <br/>
+* @returns {JSX} 
+*      
+*/
 function UserData(){
     //Creamos un estado para cada hover, ya que si usamos un mismo estado para todos, todos se activan a la vez
     const [userIsActive, setUserActive] = useState(

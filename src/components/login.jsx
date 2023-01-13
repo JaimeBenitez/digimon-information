@@ -9,6 +9,11 @@ import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import LoginForm from "./login-form";
 
+/**
+* Componente que renderiza la pantalla de login
+* @returns {JSX} 
+*      
+*/
 function Login(){
     
     return (

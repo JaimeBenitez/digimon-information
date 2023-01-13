@@ -41,26 +41,28 @@ import BackArrow from "./back-arrow";
 
 
 
-
+/**
+* Componente que renderiza la pantalla de lista de favoritos. &lt;br/>
+* Funcionalidades: &lt;br/>
+* - handleClicked(): Función que cambia el estado de IsClicked y nos permite mostrar la tarjeta del digimon &lt;br/>
+* - digimonDelete(digimon: El digimon a borrar): Función que nos permite cambiar el estado de la lista de digimon, borrando el digimon elegido &lt;br/>
+* - handleDelete(e: El evento con el que se activa la función, en este caso un click ,digimon: El digimon que queremos borrar): Funcion que nos permite activar con un click la función de borrar digimon, mostrándonos antes un mensaje de confirmación &lt;br/>
+* - handleDigimonBack(): Función que nos permite hacer desaparecer con un click la tarjeta de digimon en modo responsive  &lt;br/>
+* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que activa la tarjeta asociada al digimon que se está clickando &lt;br/>
+* - fetchData(digimonName: El nombre del digimon a mostrar): Función asíncrona que realiza una llamada a la api usando el nombre del digimon clickado 
+* @returns {JSX} 
+*      
+*/
 function MyList () {
   
   const [result,setResult] = useState(undefined); 
   const [isClicked,setIsClicked] = useState(false);   
   const [digimonList,setDigimonList] = useState(localStorage.getItem("digimonlist") ? localStorage.getItem("digimonlist").split(",") : []);
-  
-
-  /**
-   * Funcion que cambia el estado de IsClicked y nos permite mostrar la tarjeta del digimon
-   *  
-   */ 
+    
   function handleClicked(){
     setIsClicked(true);
   }
-  /**
-   * Funcion que nos permite cambiar el estado de la lista de digimons, borrando el digimon elegido
-   * @param {string} digimon - El digimon que queremos borrar
-   *  
-   */ 
+  
   function digimonDelete(digimon){ 
     //OJO - Si hacemos newDigimonList = digimonList nos dara problemas porque hara los cambios a la vez en ambas listas y el renderizado fallara
     //Esta es la mejor manera de clonar un array de manera segura
@@ -73,32 +75,19 @@ function MyList () {
     setDigimonList(newDigimonList);
     localStorage.setItem("digimonlist", digimonList);        
   }  
-  /**
-   * Funcion que nos permite activar con un click la funcion de borrar digimon, mostrandonos antes un mensaje de confirmación
-   * @param {String} e - El evento con el que se activa la funcion, en este caso un click
-   * @param {string} digimon - El digimon que queremos borrar
-   *  
-   */ 
+  
   function handleDelete(e,digimon){  
     e.preventDefault() 
     if(window.confirm("Are you sure you want to delete this digimon?")){
     digimonDelete(digimon)
     }
   }
-
-  /**
-   * Funcion que nos permite hacer desaparecer con un click la tarjeta de digimon en modo responsive  
-   *  
-   */ 
+  
   function handleDigimonBack(){
     setIsClicked(false); //Esto nos permitirá hacer desaparecer la tarjeta en responsive
     setResult(undefined); 
   }
-  /**
-   * Funcion que activa la tarjeta asociada al digimon que se está clickando
-   * @param {string} e - El evento que activa la funcion, en este caso un click 
-   *  
-   */ 
+  
   function handleSubmit(e){ 
     e.preventDefault();
     handleClicked();    
@@ -106,11 +95,7 @@ function MyList () {
     const { value } = target;  
     fetchData(value)
   }
-  /**
-   * Funcion asincrona que realiza la llamada por nombre a la API usando el nombre del digimon clickado
-   * @param {string} digimonName - El nombre del digimon a mostrar 
-   *  
-   */ 
+  
   async function fetchData (digimonName){    
     if(digimonName){
       let url = `https://digimon-api.vercel.app/api/digimon/name/${digimonName}`      
@@ -203,13 +188,13 @@ export default MyList;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emailRegexp">emailRegexp</a></li><li><a href="global.html#levels">levels</a></li><li><a href="global.html#passwordRegexp">passwordRegexp</a></li><li><a href="global.html#suggestionRegexp">suggestionRegexp</a></li><li><a href="global.html#usernameRegexp">usernameRegexp</a></li><li><a href="global.html#usuariosRegistrados">usuariosRegistrados</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#Contact">Contact</a></li><li><a href="global.html#DigimonCard">DigimonCard</a></li><li><a href="global.html#Index">Index</a></li><li><a href="global.html#List">List</a></li><li><a href="global.html#LoggedButton">LoggedButton</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginForm">LoginForm</a></li><li><a href="global.html#Logo">Logo</a></li><li><a href="global.html#ModeButton">ModeButton</a></li><li><a href="global.html#MyList">MyList</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NotLoggedButton">NotLoggedButton</a></li><li><a href="global.html#PrincipalButton">PrincipalButton</a></li><li><a href="global.html#PrincipalImage">PrincipalImage</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterForm">RegisterForm</a></li><li><a href="global.html#Suggestions">Suggestions</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserData">UserData</a></li><li><a href="global.html#backArrow">backArrow</a></li><li><a href="global.html#emailRegexp">emailRegexp</a></li><li><a href="global.html#levels">levels</a></li><li><a href="global.html#passwordRegexp">passwordRegexp</a></li><li><a href="global.html#suggestionRegexp">suggestionRegexp</a></li><li><a href="global.html#usernameRegexp">usernameRegexp</a></li><li><a href="global.html#usuariosRegistrados">usuariosRegistrados</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 12 2023 20:52:01 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Jan 13 2023 17:19:22 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

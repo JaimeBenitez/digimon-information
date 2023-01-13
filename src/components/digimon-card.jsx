@@ -6,22 +6,28 @@
 
 import React,{useState} from "react";
 
+/**
+* Componente que renderiza la tarjeta del digimon.<br/>
+* Funcionalidades: <br/>
+* - handleSelection(): Cambia el estilo de la carta y activar el boton de save con un click <br/>
+* - handleSave(): Guarda los nombres de los digimon en el local storage al pulsar en Save <br/>
+* @param {number} index - Índice de la carta que nos servirá de key para e mapa
+* @param {string} name - Nombre del digimon
+* @param {string} img - Ruta a la imagen del digimon
+* @param {string} level - Nivel del digimon
+
+* @returns {JSX} 
+*      
+*/
 function DigimonCard({index, name, img, level}){
     const [isSelected, setIsSelected] = useState(false);
     
-    /**
-     * Funcion que cambia el estado para cambiar el estilo de la carta y activar el boton de save
-     * @param {string} e - El evento que activa la función, en este caso click 
-     *      
-     */
+    
     function handleSelection(){
         setIsSelected(!isSelected)      
     }
     
-    /**
-     * Funcion que nos permitira guardar los nombres de los digimon en el local storage al pulsar en Save    
-     *     
-     */   
+      
     function handleSave(){
     //En esta lista iremos guardando los digimon que formarán parte de la lista de favoritos del usuario
       let digimonList = []

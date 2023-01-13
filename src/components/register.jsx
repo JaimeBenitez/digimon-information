@@ -8,6 +8,11 @@ import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import RegisterForm from "./register-form";
 
+/**
+* Componente que renderiza la pantalla de registro
+* @returns {JSX} 
+*      
+*/
 function Register(){
     
     return (

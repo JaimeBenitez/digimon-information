@@ -23,6 +23,20 @@ const levels = [
   "Ultimate",
   "Mega"              
 ]
+
+/**
+* Componente que renderiza la pantalla de listado. <br/>
+* Funcionalidades: <br/>
+* - enableListButton(): Cambia el estado y habilita el boton de lista completa si se ha realizado una busqueda previa <br/>
+* - handleSortBy[NameAsc|NameDesc|LevelAsc|LevelDesc](): Funciones que activan la ordenación por nombre o por nivel, de manera ascendente o descendente <br/>
+* - sortResults(a: 1º elemento a ordenar ,b: segundo elemento a ordenar)->number: Función que ordena el map usando los check de los radio button y la función sort <br/>
+* - handle[Name|Level]Change(e: Evento que activa la función, en este caso un cambio en el input): Función que cambia el estado cada vez que cambia el input. Hay una para el nombre y otra para el nivel <br/>
+* - handle[Name|Level]Submit(e: Evento que activa la función, en este caso un click): Función que realiza la llamada a la api cuando se hace el submit del campo correspondiente y habilita el botón de listado completo <br/>
+* - handleListAll(e: Evento que activa la función, en este caso un click): Función que realiza la llamada a la api cuando se pulsa en el botón de lista completa <br/>
+* - fetchData(digimonName: El nombre del digimon a buscar, digimonLevel: El nivel del digimon a buscar): Función asincrona que realiza una llamada a la api segun que parámetros reciba 
+* @returns {JSX} 
+*      
+*/
 function List () {
   
   const [result,setResult] = useState([]);
@@ -33,52 +47,29 @@ function List () {
   const [sortByLevel,setSortByLevel] = useState(undefined);  
   const [isEnabled,setIsEnabled] = useState(false);
  
-  /**
-   * Funcion que cambia el estado y habilita el boton de lista completa si se ha realizado una busqueda previa  
-   *      
-   */
+  
   function enableListButton(){
     setIsEnabled(true)
   } 
   
-  /**
-   * Funcion que cambia el estado y realiza la ordenación por nombre de manera ascendente  
-   *  
-   */
+  
   function handleSortByNameAsc(){    
     setSortByName(false);
   }
 
-  /**
-   * Funcion que cambia el estado y realiza la ordenación por nombre de manera descendente  
-   *  
-   */
+  
   function handleSortByNameDesc(){    
     setSortByName(true);
   }
-
-  /**
-   * Funcion que cambia el estado y realiza la ordenación por nivel de manera ascendente
-   *    
-   */
+ 
   function handleSortByLevelAsc(){    
     setSortByLevel(false);
   }
 
-  /**
-   * Funcion que cambia el estado y realiza la ordenación por nivel de manera descendente
-   *    
-   */
   function handleSortByLevelDesc(){    
     setSortByLevel(true);
   }
-  /**
-   * Funcion que ordena el map usando los check de los radio button y la funcion sort
-   * @param {object} a - Primer objecto a comparar
-   * @param {object} b - Segundo objecto a comparar 
-   *  
-   * @returns {number} - Cuando devuelve 1 significa que b va antes que a, si es -1 a va antes de b
-   */  
+    
   function sortResults(a,b){
     if(sortByLevel !== undefined){     
       //Comprobamos los indices de la lista de niveles 
@@ -107,62 +98,37 @@ function List () {
     //Si no hay nada checkeado se deja tal cual sale de la API
     return 0;
   }
-  /**
-   * Funcion que cambia el estado cada vez que cambia el input del nombre
-   * @param {string} e - El evento que activa la función, en este caso cualquier cambio dentro del input
-   *  
-   */
+  
   function handleNameChange(e){        
     const { target } = e;
     const { value } = target;    
     setName(value);
   }
-  /**
-   * Funcion que cambia el estado cada vez que cambia el input del nivel
-   * @param {string} e - El evento que activa la función, en este caso cualquier cambio dentro del input
-   *  
-   */
+  
   function handleLevelChange(e){    
     const { target } = e;
     const { value } = target;    
     setLevel(value);
   }
-  /**
-   * Funcion que realiza la llamada a la api cuando se hace el submit del nombre
-   * @param {string} e - El evento que activa la función, en este caso un click
-   *  
-   */
+  
   function handleNameSubmit(e){
     e.preventDefault();
     enableListButton();    
     fetchData(nameValue,undefined);
   }
-  /**
-   * Funcion que realiza la llamada a la api cuando se hace el submit del nivel
-   * @param {string} e - El evento que activa la función, en este caso un click
-   *  
-   */
+ 
   function handleLevelSubmit(e){
     e.preventDefault();
     enableListButton();
     fetchData(undefined,levelValue);
   }
-  /**
-   * Funcion que realiza la llamada a la api cuando se pulsa en el boton de lista completa
-   * @param {string} e - El evento que activa la función, en este caso un click
-   *  
-   */
+  
   function handleListAll(e){    
     e.preventDefault();    
     fetchData();
   }
   
-  /**
-   * Funcion asincrona que realiza una llamada a la api segun que parametros reciba
-   * @param {string} digimonName - El nombre del digimon a buscar
-   * @param {string} digimonLevel - El nivel a buscar
-   *  
-   */
+  
   async function fetchData (digimonName = undefined, digimonLevel = undefined){    
     let url = "";
     if(digimonName){

@@ -8,17 +8,25 @@ import BackArrow from "./back-arrow";
 import { useNavigate } from "react-router-dom";
 
 /**
-    * Lista de usuarios registrados
-    * @type {Array<Object>} 
-    *  
-    */
+* Lista de usuarios registrados
+* @type {Array<Object>} 
+*  
+*/
 const usuariosRegistrados = [
     {user: "crisangar", pass: "Edu_03", email: "crisangar03@gmail.com" , registerDate: "03-05-2021", bornDate: "05-05-1990"},
     {user: "demonSlayer", pass: "Miloka_69", email: "demonSlayer69@gmail.com", registerDate: "07-09-2021", bornDate: "05-07-1988"},
     {user: "javi_2000", pass: "tiranosaurusRex999", email: "javi_2000@gmail.com", registerDate: "05-12-2021", bornDate: "11-02-1994"},
     {user: "digiFan", pass: "Digital_Freak", email: "digiFreak@gmail.com", registerDate: "08-05-2022", bornDate: "02-05-1992"}
 ]
-
+/**
+* Componente que renderiza el formulario de login<br/>
+* Funcionalidades: <br/>
+* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. De lo contrario muestra un error <br/>
+* - handleChange(e: Evento que activa la función, en este caso un cambio en el input): Función que controla el estado al cambiar algo dentro de los inputs <br/>
+* - handle[Username|Password]Error(): Función que testea si el usuario existe y si no muestra un error al quitar el foco del input correspondiente. Solo ocurrira al quitar el foco del input <br/>
+* @returns {JSX} 
+*      
+*/
 function LoginForm(){
     //Nos servirá para hacer la redirección desde nuestro formulario
     const navigate = useNavigate();    
@@ -31,12 +39,6 @@ function LoginForm(){
         passwordError: false,                  
     });
 
-    
-    /**
-    * Funcion que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. De lo contrario muestra un error
-    * @param {string} e - El evento que activa la función, en este caso un click
-    *  
-    */
     function handleSubmit(e){
         
         e.preventDefault();
@@ -63,11 +65,7 @@ function LoginForm(){
         }
         
     }
-    /**
-    * Funcion que controla el estado al cambiar algo dentro de los inputs
-    * @param {string} e - El evento que activa la función, en este caso un cambio dentro de un input
-    *  
-    */
+    
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;
@@ -82,11 +80,7 @@ function LoginForm(){
         setValues(newValues);
     }
 
-    /**
-    * Funcion que testea si el usuario existe y si no muestra un error al quitar el foco del input del nombre de usuario.
-    * Esto solo ocurrirá cuando se quite el foco del elemento, previninendo que el usuario vea el mensaje de error mientras rellena el campo
-    *  
-    */
+    
     function handleUsernameError(){    
         let userValid = false;
         for(let i=0;i<usuariosRegistrados.length;i++){
@@ -99,10 +93,7 @@ function LoginForm(){
         setValues((prevState) => ({ ...prevState, usernameError}));
     }    
 
-    /**
-    * Funcion que testea si el usuario existe y si no muestra un error al quitar el foco del input del nombre de usuario. 
-    *     
-    */
+   
     function handlePasswordError(){
         
         let passwordValid = false;

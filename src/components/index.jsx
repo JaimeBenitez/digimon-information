@@ -13,14 +13,13 @@ import LoggedButton from "./logged-button";
 import NotLoggedButton from "./not-logged-button";
 import { useNavigate } from "react-router-dom";
 
-
 /**
-* Componente que renderiza la pantalla de inicio. <br/>
-* Funcionalidades: <br/>
-* - handletoogle(): Muestra con un setTimeOut un digimon tras 5 segs <br/>
-* - logOut(): Lanza una pantalla de confirmación y, de confirmar el usuario la acción, borrará todos los datos del localStorage y redirigirá al index 
-* @returns {JSX} 
-*      
+ * @module Index
+ */
+/**
+* Componente que renderiza la pantalla de inicio. 
+* @memberof module:Index
+* @returns {JSX}   
 */
 function Index(){   
     const navigate = useNavigate();
@@ -29,7 +28,10 @@ function Index(){
         false
     );
 
-    
+    /**
+     * Muestra con un setTimeOut un digimon tras 5 segs
+     * @memberof module:Index
+     */
     const handleToogle = () => {        
         setActive(!isActive);
     }
@@ -40,7 +42,10 @@ function Index(){
         clearTimeout(showCalumon);
     }
     
-    
+    /**
+     * Lanza una pantalla de confirmación y, de confirmar el usuario la acción, borrará todos los datos del localStorage y redirigirá al index 
+     * @memberof module:Index
+     */
     function logOut(){        
         if(window.confirm("Are you sure you want to log out? If you do your saved digimon list will lost")) {
             localStorage.clear();

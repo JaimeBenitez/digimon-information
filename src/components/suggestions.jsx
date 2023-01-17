@@ -8,23 +8,22 @@ import React, { useState } from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import BackArrow from "./back-arrow";
-
+/**
+ * @module Suggestions
+ */
 //Esta regexp nos permite establecer que minimo se necesiten 3 palabras para que sea válido el campo
 /**
 * Regex para validar el text area
+* @memberof module:Suggestions
 * @type {Object} 
 */ 
 const suggestionRegexp = new RegExp(/^[\w',]+\s[\w',]+\s[\w',]+/gm);
 
 
 /**
-* Componente que renderiza la pantalla de sugerencias<br/>
-* Funcionalidades: <br/>
-* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que comprueba si los datos registrados son correctos y de ser asi te muestra un mensaje en un alert <br/>
-* - handleChange(e: Evento que activa la función, en este caso un cambio en el input): Función que controla el estado al cambiar algo dentro del text area <br/>
-* - handleSuggestionError(): Función que controla la salida del mensaje de error en el campo de sugerencias <br/>
-* @returns {JSX} 
-*      
+* Componente que renderiza la pantalla de sugerencias
+* @memberof module:Suggestions
+* @returns {JSX}       
 */
 function Suggestions(){
     
@@ -33,6 +32,11 @@ function Suggestions(){
         suggestionError: false,                     
     });
    
+    /**
+     * Función que comprueba si los datos registrados son correctos y de ser asi te muestra un mensaje en un alert
+     * @memberOf module:Suggestions
+     * @param {string} e - Evento que activa la función, en este caso un click 
+     */
     function handleSubmit(e){        
         e.preventDefault();
         //Si todo el formulario es valido entonces aparece el alert
@@ -40,7 +44,11 @@ function Suggestions(){
             alert("Thanks for share with us your opinions, the digital world its a little bit better day by day thanks to your suggestions")
         }        
     }
-    
+    /**
+     * Función que controla el estado al cambiar algo dentro del text area
+     * @memberOf module:Suggestions  
+     * @param {string} e - Evento que activa la función, en este caso un cambio del input
+     */
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;
@@ -55,9 +63,9 @@ function Suggestions(){
         setValues(newValues);
     }
     /**
-    * Funcion que controla la salida del mensaje de error en el campo de sugerencias
-    *    
-    */
+     * Función que controla la salida del mensaje de error en el campo de sugerencias
+     * @memberOf module:Suggestions       
+     */
     function handleSuggestionError(){        
         const suggestionError = !suggestionRegexp.test(values.suggestion);
         setValues((prevState) => ({ ...prevState, suggestionError}));

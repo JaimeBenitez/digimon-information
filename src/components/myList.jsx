@@ -10,31 +10,32 @@ import ModeButton from "./mode-button";
 import Logo from "./logo";
 import Button from "./button";
 import BackArrow from "./back-arrow";
-
-
-
 /**
-* Componente que renderiza la pantalla de lista de favoritos. <br/>
-* Funcionalidades: <br/>
-* - handleClicked(): Función que cambia el estado de IsClicked y nos permite mostrar la tarjeta del digimon <br/>
-* - digimonDelete(digimon: El digimon a borrar): Función que nos permite cambiar el estado de la lista de digimon, borrando el digimon elegido <br/>
-* - handleDelete(e: El evento con el que se activa la función, en este caso un click ,digimon: El digimon que queremos borrar): Funcion que nos permite activar con un click la función de borrar digimon, mostrándonos antes un mensaje de confirmación <br/>
-* - handleDigimonBack(): Función que nos permite hacer desaparecer con un click la tarjeta de digimon en modo responsive  <br/>
-* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que activa la tarjeta asociada al digimon que se está clickando <br/>
-* - fetchData(digimonName: El nombre del digimon a mostrar): Función asíncrona que realiza una llamada a la api usando el nombre del digimon clickado 
-* @returns {JSX} 
-*      
+ * @module My-List
+ */
+/**
+* Componente que renderiza la pantalla de lista de favoritos.
+* @memberof module:My-List
+* @returns {JSX}       
 */
 function MyList () {
   
   const [result,setResult] = useState(undefined); 
   const [isClicked,setIsClicked] = useState(false);   
   const [digimonList,setDigimonList] = useState(localStorage.getItem("digimonlist") ? localStorage.getItem("digimonlist").split(",") : []);
-    
+  
+  /**
+   * Función que cambia el estado de IsClicked y nos permite mostrar la tarjeta del digimon
+   * @memberOf module:My-List       
+   */ 
   function handleClicked(){
     setIsClicked(true);
   }
-  
+  /**
+   * Función que nos permite cambiar el estado de la lista de digimon, borrando el digimon elegido
+   * @memberOf module:My-List    
+   * @param {string} digimon - El digimon que se va a borrar
+   */
   function digimonDelete(digimon){ 
     //OJO - Si hacemos newDigimonList = digimonList nos dara problemas porque hara los cambios a la vez en ambas listas y el renderizado fallara
     //Esta es la mejor manera de clonar un array de manera segura
@@ -47,19 +48,31 @@ function MyList () {
     setDigimonList(newDigimonList);
     localStorage.setItem("digimonlist", digimonList);        
   }  
-  
+  /**
+   * Funcion que nos permite activar con un click la función de borrar digimon, mostrándonos antes un mensaje de confirmación
+   * @memberOf module:My-List 
+   * @param {string} e - El evento con el que se activa la función, en este caso un click  
+   * @param {string} digimon - El digimon que se va a borrar
+   */
   function handleDelete(e,digimon){  
     e.preventDefault() 
     if(window.confirm("Are you sure you want to delete this digimon?")){
     digimonDelete(digimon)
     }
   }
-  
+  /**
+   * Función que nos permite hacer desaparecer con un click la tarjeta de digimon en modo responsive
+   * @memberOf module:My-List       
+   */
   function handleDigimonBack(){
     setIsClicked(false); //Esto nos permitirá hacer desaparecer la tarjeta en responsive
     setResult(undefined); 
   }
-  
+  /**
+   * Función que activa la tarjeta asociada al digimon que se está seleccionando
+   * @memberOf module:My-List 
+   * @param {string} e - El evento con el que se activa la función, en este caso un click
+   */
   function handleSubmit(e){ 
     e.preventDefault();
     handleClicked();    
@@ -67,7 +80,11 @@ function MyList () {
     const { value } = target;  
     fetchData(value)
   }
-  
+  /**
+   * Función asíncrona que realiza una llamada a la api usando el nombre del digimon seleccionado 
+   * @memberOf module:My-List 
+   * @param {string} digimonName - El nombre del digimon a mostrar
+   */
   async function fetchData (digimonName){    
     if(digimonName){
       let url = `https://digimon-api.vercel.app/api/digimon/name/${digimonName}`      

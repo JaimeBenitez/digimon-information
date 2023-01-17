@@ -8,11 +8,12 @@ import React, { useState } from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import BackArrow from "./back-arrow";
-
 /**
-* Componente que renderiza la página de contacto. <br/>
-* Funcionalidades: <br/>
-* - handleToogle(e: Evento que activa la función. En este caso un click) Cambia el estado para mostrar el panel de colaboradores <br/>
+ * @module Contact
+ */
+/**
+* Componente que renderiza la página de contacto.
+* @memberof module:Contact
 * @returns {JSX}       
 */
 function Contact(){
@@ -20,7 +21,12 @@ function Contact(){
     const [isActive, setActive] = useState(
         false
     );
-    
+    /**
+     * Cambia el estado para mostrar el panel de colaboradores
+     * @memberOf module:Contact
+     * @function
+     * @param {string} e - Evento que activa la función. En este caso un click
+     */
     const handleToogle = (e) => {
         e.preventDefault();
         setActive(!isActive);

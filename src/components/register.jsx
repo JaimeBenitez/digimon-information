@@ -7,9 +7,12 @@ import React from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import RegisterForm from "./register-form";
-
+/**
+ * @module Register
+ */
 /**
 * Componente que renderiza la pantalla de registro
+* @memberof module:Register
 * @returns {JSX} 
 *      
 */

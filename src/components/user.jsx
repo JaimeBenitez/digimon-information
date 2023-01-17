@@ -9,11 +9,13 @@ import React from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import UserData from "./user-data";
-
+/**
+ * @module User
+ */
 /**
 * Componente que renderiza la pantalla de usuario
-* @returns {JSX} 
-*      
+* @memberof module:User-Data
+* @returns {JSX}       
 */
 function User(){
     

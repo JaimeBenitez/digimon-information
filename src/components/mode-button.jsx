@@ -5,11 +5,12 @@
  */
 import React,{ useState, useEffect } from "react";
 import "../assets/sass/App.sass";
-
 /**
-* Componente que renderiza el botón de cambio a modo oscuro<br/>
-* Funcionalidades: <br/>
-* - toogleTheme(): Función que cambia el tema entre modo oscuro y claro, se activa con un click <br/>
+ * @module Mode-Button
+ */
+/**
+* Componente que renderiza el botón de cambio a modo oscuro
+* @memberof module:Mode-Button
 * @param {boolean} isList - Le dice al botón si está en la pantalla de listado
 * @param {boolean} isMyList - Le dice al botón si está en la pantalla de favoritos
 * @returns {JSX} 
@@ -20,7 +21,11 @@ function ModeButton({ isList, isMyList }){
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
     );
-        
+
+    /**
+     * Función que cambia el tema entre modo oscuro y claro, se activa con un clic
+     * @memberOf module:Mode-Button       
+     */    
     const toggleTheme = () => {
         if (theme === "light") {
             setTheme("dark");

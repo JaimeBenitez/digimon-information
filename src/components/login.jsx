@@ -8,11 +8,13 @@ import React from "react";
 import Navbar from "./navbar";
 import PrincipalImage from "./principal-image";
 import LoginForm from "./login-form";
-
+/**
+ * @module Login
+ */
 /**
 * Componente que renderiza la pantalla de login
-* @returns {JSX} 
-*      
+* @memberof module:Login
+* @returns {JSX}      
 */
 function Login(){
     

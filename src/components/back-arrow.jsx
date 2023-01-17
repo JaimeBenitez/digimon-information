@@ -3,10 +3,13 @@
  * @author Jaime Benitez
  * @see <a href="https://jaimebenitez.com" target="_blank">Jaime Benitez </a>
  */
-
 import React from "react";
 /**
+ * @module Back-arrow
+ */
+/**
 * Componente consistente en un enlace que permite volver al index
+* @memberof module:Back-arrow
 * @returns {JSX} 
 *      
 */

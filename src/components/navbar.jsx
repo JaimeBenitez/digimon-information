@@ -5,9 +5,12 @@
  */
 import React from "react";
 import ModeButton from "./mode-button";
-
+/**
+ * @module Navbar
+ */
 /**
 * Componente que renderiza la navbar
+* @memberof module:Navbar
 * @returns {JSX} 
 *      
 */

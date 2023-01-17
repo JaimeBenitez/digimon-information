@@ -6,9 +6,12 @@
 import React,{ useState } from "react";
 import BackArrow from "./back-arrow";
 import { useNavigate } from "react-router-dom";
-
+/**
+ * @module Login-form
+ */
 /**
 * Lista de usuarios registrados
+* @memberof module:Login-form
 * @type {Array<Object>} 
 *  
 */
@@ -19,13 +22,9 @@ const usuariosRegistrados = [
     {user: "digiFan", pass: "Digital_Freak", email: "digiFreak@gmail.com", registerDate: "08-05-2022", bornDate: "02-05-1992"}
 ]
 /**
-* Componente que renderiza el formulario de login<br/>
-* Funcionalidades: <br/>
-* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. De lo contrario muestra un error <br/>
-* - handleChange(e: Evento que activa la función, en este caso un cambio en el input): Función que controla el estado al cambiar algo dentro de los inputs <br/>
-* - handle[Username|Password]Error(): Función que testea si el usuario existe y si no muestra un error al quitar el foco del input correspondiente. Solo ocurrira al quitar el foco del input <br/>
-* @returns {JSX} 
-*      
+* Componente que renderiza el formulario de login
+* @memberof module:Login-form
+* @returns {JSX}     
 */
 function LoginForm(){
     //Nos servirá para hacer la redirección desde nuestro formulario
@@ -39,8 +38,12 @@ function LoginForm(){
         passwordError: false,                  
     });
 
-    function handleSubmit(e){
-        
+    /**
+     * Función que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. De lo contrario muestra un error
+     * @memberOf module:Login-form   
+     * @param {string} e - Evento que activa la función, en este caso un click 
+     */ 
+    function handleSubmit(e){        
         e.preventDefault();
         //Si todo el formulario es valido entonces aparece el alert. Es importante comprobar también aqui para que, no solo sean validos,
         //sino que la contraseña coincida con la del usuario introducido
@@ -65,7 +68,11 @@ function LoginForm(){
         }
         
     }
-    
+    /**
+     * Función que controla el estado al cambiar algo dentro de los inputs
+     * @memberOf module:Login-form   
+     * @param {string} e - Evento que activa la función, en este caso un cambio del input
+     */
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;
@@ -80,7 +87,10 @@ function LoginForm(){
         setValues(newValues);
     }
 
-    
+    /**
+     * Función que testea si el usuario existe y si no muestra un error al quitar el foco del input de nombre de usuario
+     * @memberOf module:Login-form        
+     */
     function handleUsernameError(){    
         let userValid = false;
         for(let i=0;i<usuariosRegistrados.length;i++){
@@ -93,7 +103,10 @@ function LoginForm(){
         setValues((prevState) => ({ ...prevState, usernameError}));
     }    
 
-   
+    /**
+     * Función que testea si el usuario existe y si no muestra un error al quitar el foco del input de contraseña
+     * @memberOf module:Login-form        
+     */
     function handlePasswordError(){
         
         let passwordValid = false;

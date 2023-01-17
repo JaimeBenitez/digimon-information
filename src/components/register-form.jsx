@@ -7,14 +7,17 @@
 import React,{ useState } from "react";
 import BackArrow from "./back-arrow";
 import { useNavigate } from "react-router-dom";
-
+/**
+ * @module Register-Form
+ */
 
 //Podemos declarar variables fuera de la función componente y usarlos dentro del mismo
 
 /**
 * Regex para validar el email. <br/>
 * El email puede tener cualquier caracter en cualquier cantidad siempre y cuando no sea una @, espacio o tabulación en la primera parte
-Luego tendrá una @, luego otro set igual que en la primera parte, un punto y finalmente otro set del mismo tipo
+* Luego tendrá una @, luego otro set igual que en la primera parte, un punto y finalmente otro set del mismo tipo
+* @memberof module:Register-Form
 * @type {Object} 
 */
 const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
@@ -22,6 +25,7 @@ const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
 /**
 * Regex para validar la contraseña. <br/>
 * La contraseña debera tener al menos una mayuscula, minuscula y digito, permite caracteres especiales y contara de entre 8 y 16 caracteres
+* @memberof module:Register-Form
 * @type {Object} 
 */ 
 const passwordRegexp = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/);
@@ -29,19 +33,16 @@ const passwordRegexp = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)
 /**
 * Regex para validar el nombre de usuario. <br/>
 * El usuario admitirá cualquier caracter pero tendrá entre 3 y 20 caracteres
+* @memberof module:Register-Form
 * @type {Object} 
 */
 const usernameRegexp = new RegExp(/^[\S]{3,20}$/);
 
 
 /**
-* Componente que renderiza el formulario de registro<br/>
-* Funcionalidades: <br/>
-* - handleSubmit(e: Evento que activa la función, en este caso un click): Función que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. <br/>
-* - handleChange(e: Evento que activa la función, en este caso un cambio en el input): Función que controla el estado al cambiar algo dentro de los inputs <br/>
-* - handle[Username|Email|Password|Date]Error(): Función que testea si el usuario existe y si no muestra un error al quitar el foco del input correspondiente. Solo ocurrirá al quitar el foco del input <br/>
-* @returns {JSX} 
-*      
+* Componente que renderiza el formulario de registro
+* @memberof module:Register-Form
+* @returns {JSX}       
 */
 function RegisterForm(){
     const navigate = useNavigate();
@@ -57,7 +58,11 @@ function RegisterForm(){
         dateError: false,           
     });
 
-    
+    /**
+     * Función que comprueba si los datos registrados son correctos y de ser asi los guarda en el localStorage, muestra un mensaje de bienvenida y nos manda al index. 
+     * @memberOf module:Register-Form 
+     * @param {string} e - Evento que activa la función, en este caso un click 
+     */ 
     function handleSubmit(e){        
         e.preventDefault();
         //Si todo el formulario es valido entonces aparece el alert
@@ -71,7 +76,11 @@ function RegisterForm(){
             navigate("/"); 
         }        
     }
-
+    /**
+     * Función que controla el estado al cambiar algo dentro de los inputs
+     * @memberOf module:Register-Form   
+     * @param {string} e - Evento que activa la función, en este caso un cambio del input
+     */
     function handleChange(e){
         //Aqui target es el elemento que ejecuta el evento, name el nombre del input y value el valor actual
         const { target } = e;
@@ -84,7 +93,10 @@ function RegisterForm(){
         setValues(newValues);
     }
 
-    
+    /**
+     * Función que testea si el usuario existe y si no muestra un error al quitar el foco del input de nombre de usuario
+     * @memberOf module:Register-Form
+     */ 
     function handleUsernameError(){
         //Testea si pasa la regex y de no ser asi lanza el error. Esto solo ocurrirá cuando se quite el foco del elemento, previninendo
         //que el usuario vea el mensaje de error mientras rellena el campo
@@ -92,18 +104,28 @@ function RegisterForm(){
         setValues((prevState) => ({ ...prevState, usernameError}));
     }
 
+    /**
+     * Función que testea si el email es valido y si no muestra un error al quitar el foco del input de email
+     * @memberOf module:Register-Form
+     */ 
     function handleEmailError(){        
         const emailError = !emailRegexp.test(values.email);
         setValues((prevState) => ({ ...prevState, emailError}));
     }
 
-    
+    /**
+     * Función que testea si la contraseña es valida y si no muestra un error al quitar el foco del input de vontraseña
+     * @memberOf module:Register-Form
+     */ 
     function handlePasswordError(){        
         const passwordError = !passwordRegexp.test(values.password);
         setValues((prevState) => ({ ...prevState, passwordError}));
     }
 
-    
+    /**
+     * Función que testea si la fecha es valida y si no muestra un error al quitar el foco del input de fecha de nacimiento 
+     * @memberOf module:Register-Form
+     */ 
     function handleDateError(){
         //Comprobación de la fecha, aunque el tipo date ya comprueba todo esto es mejor revalidar por si el usuario modifica el HTML
         //Ojo que el tipo date le da la vuelta a la fecha, empieza por años

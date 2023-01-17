@@ -7,14 +7,14 @@
 
 import React, { useState } from "react";
 import BackArrow from "./back-arrow";
-
+/**
+ * @module User-Data
+ */
     
 /**
-* Componente que renderiza los datos del usuario<br/>
-* Funcionalidades: <br/>
-* - handle[User|Email|Saved|Member|Born]Hover(): Funciones que controlan el hover de su elemento correspondiente <br/>
-* @returns {JSX} 
-*      
+* Componente que renderiza los datos del usuario
+* @memberof module:User-Data
+* @returns {JSX}      
 */
 function UserData(){
     //Creamos un estado para cada hover, ya que si usamos un mismo estado para todos, todos se activan a la vez
@@ -23,7 +23,7 @@ function UserData(){
     );
     /**
     * Funcion que controla el hover del nombre de usuario
-    *    
+    * @memberof module:User-Data 
     */
     const handleUserHover = () =>{
         setUserActive(!userIsActive);
@@ -35,7 +35,7 @@ function UserData(){
 
     /**
     * Funcion que controla el hover del email
-    *  
+    * @memberof module:User-Data
     */
     const handleEmailHover = () =>{
         setEmailActive(!emailIsActive);
@@ -46,7 +46,7 @@ function UserData(){
     );
     /**
     * Funcion que controla el hover del numero de digimon guardados 
-    *  
+    * @memberof module:User-Data
     */
     const handleSavedHover = () =>{
         setSavedActive(!savedIsActive);
@@ -58,7 +58,7 @@ function UserData(){
 
     /**
     * Funcion que controla el hover de la fecha de union a la página
-    *  
+    * @memberof module:User-Data
     */
     const handleMemberHover = () =>{
         setMemberActive(!memberIsActive);
@@ -70,7 +70,7 @@ function UserData(){
 
     /**
     * Funcion que controla el hover de la fecha de nacimiento
-    *  
+    * @memberof module:User-Data
     */
     const handleBornHover = () =>{
         setBornActive(!bornIsActive);

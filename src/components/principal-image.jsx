@@ -5,9 +5,12 @@
  */
 
 import React from "react";
-
+/**
+ * @module Principal-Image
+ */
 /**
 * Componente que renderiza la imagen que ocupa la mitad de la pantalla en la mayoria de pantallas
+* @memberof module:Principal-Image
 * @returns {JSX} 
 *      
 */

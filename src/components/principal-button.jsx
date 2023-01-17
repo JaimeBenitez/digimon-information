@@ -5,9 +5,12 @@
  */
 
 import React from "react";
-
+/**
+ * @module Principal-Button
+ */
 /**
 * Componente que renderiza el botón principal del index
+* @memberof module:Principal-Button
 * @param {string} props.children - El texto que tendrá el botón
 * @returns {JSX} 
 *      

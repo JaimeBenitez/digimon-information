@@ -6,7 +6,11 @@
 
 import React from "react";
 /**
+ * @module Not-Logged-Button
+ */
+/**
 * Componente que renderiza botones dinámicos que solo aparecerán si el usuario no esta logueado
+* @memberof module:Not-Logged-Button
 * @param {string} props.direction - Dirección a la que nos llevará el botón
 * @param {string} props.id - Id del botón, para darle estilos concretos
 * @param {string} props.children - El texto que tendrá el botón
